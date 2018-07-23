@@ -1,6 +1,6 @@
 Feature: Ensure Search API on Bay Elasticsearch work.
 
-  @api
+  @api @nosuggest
   Scenario: Check for Elasticsearch and search test content.
     # Ensure Bay Elasticsearch exist
     When I visit "http://elasticsearch:9200/_cat/indices?v"

@@ -3,26 +3,27 @@
     "description": "Search configuration for Tide Drupal 8 distribution",
     "type": "drupal-module",
     "license": "GPL-2.0+",
-    "version": "0.0.1",
     "require": {
         "drupal/search_api": "^1.8",
         "drupal/elasticsearch_connector": "^5.0-alpha2",
         "dpc-sdp/tide_core": "0.0.1"
     },
+    "require-dev": {
+        "dpc-sdp/tide_test": "@dev"
+    },
     "repositories": {
-        "tide_core": {
-          "type": "vcs",
-          "no-api": true,
-          "url": "ssh://git@github.com:22/dpc-sdp/tide_core.git"
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
         }
     },
-    "extra": {
-        "enable-patching": true,
-        "composer-exit-on-patch-failure": true,
-        "patches": {
-            "drupal/elasticsearch_connector": {
-                "Failed to parse node status - https://www.drupal.org/project/elasticsearch_connector/issues/2978005": "https://www.drupal.org/files/issues/2018-06-07/elasticsearch_connector-convert_boolean_fields-2978005-2.patch"
-            }
-        }
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "platform": {
+            "php": "7.1"
+        },
+        "process-timeout": 0,
+        "sort-packages": true
     }
 }
