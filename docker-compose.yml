@@ -33,3 +33,10 @@ services:
     image: selenium/standalone-chrome
     volumes:
           - ./tests/behat/fixtures:/app/tests/behat/fixtures:delegated
+  elasticsearch:
+    build:
+      context: .
+      dockerfile: Dockerfile.elasticsearch
+    labels:
+      lagoon.type: custom
+      lagoon.template: .lagoon.elasticsearch.yml

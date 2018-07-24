@@ -1,0 +1,26 @@
+version: '2'
+services:
+  cli:
+    environment:
+      LAGOON_ENVIRONMENT_TYPE: 'ci'
+  php:
+    environment:
+      LAGOON_ENVIRONMENT_TYPE: 'ci'
+  nginx:
+    environment:
+      LAGOON_ENVIRONMENT_TYPE: 'ci'
+  mariadb:
+    environment:
+      LAGOON_ENVIRONMENT_TYPE: 'ci'
+  selenium:
+    image: selenium/standalone-chrome
+    environment:
+      LAGOON_ENVIRONMENT_TYPE: 'ci'
+    volumes:
+          - ./tests/behat/fixtures:/app/tests/behat/fixtures:delegated
+  elasticsearch:
+    build:
+      context: .
+      dockerfile: Dockerfile.elasticsearch.ci
+    environment:
+      LAGOON_ENVIRONMENT_TYPE: 'ci'

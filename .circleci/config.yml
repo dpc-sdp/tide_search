@@ -13,7 +13,7 @@ aliases:
           SSH_KEY_FINGERPRINT: *ssh_key_fingerprint
           COMPOSER_ALLOW_SUPERUSER: 1
           COMPOSE_PROJECT_NAME: mysite
-          COMPOSE_FILE: docker-compose.yml
+          COMPOSE_FILE: docker-compose.yml:docker-compose.ci.yml
           INSTALL_SUGGEST: 0
           BEHAT_PROFILE: ""
     steps:
