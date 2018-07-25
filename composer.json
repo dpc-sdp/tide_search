@@ -11,6 +11,10 @@
     "require-dev": {
         "dpc-sdp/tide_test": "@dev"
     },
+    "suggest": {
+        "dpc-sdp/tide_landing_page": "@dev",
+        "dpc-sdp/tide_page": "@dev"
+    },
     "repositories": {
         "drupal": {
             "type": "composer",
