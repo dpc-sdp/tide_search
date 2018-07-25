@@ -2,6 +2,11 @@ Feature: Ensure Search API on Bay Elasticsearch work.
 
   @api @nosuggest
   Scenario: Check for Elasticsearch and search test content.
+
+    When I go to "admin/config/search/elasticsearch-connector"
+    And I save screenshot
+    Then I should see the text "ElasticSearch on Bay"
+
     # Ensure Bay Elasticsearch exist
     When I visit "http://elasticsearch:9200/_cat/indices?v"
     Then the response status code should be 200
