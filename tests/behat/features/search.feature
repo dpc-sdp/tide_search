@@ -8,6 +8,10 @@ Feature: Ensure Search API on Bay Elasticsearch work.
     And I save screenshot
     Then I should see the text "ElasticSearch on Bay"
 
+    Given I am logged in as a user with the "administrator" role
+    When I go to "admin/config/search/search-api"
+    And I save screenshot
+
     # Ensure Bay Elasticsearch exist
     When I visit "http://elasticsearch:9200/_cat/indices?v"
     Then the response status code should be 200
