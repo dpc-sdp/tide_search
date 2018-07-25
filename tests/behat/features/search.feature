@@ -37,7 +37,7 @@ Feature: Ensure Search API on Bay Elasticsearch work.
     And I wait for 5 seconds
 
     # Published Test content should be in search results.
-    When I visit "http://elasticsearch:9200/_cat/indices?v"
+    When I visit "http://elasticsearch:9200/elasticsearch_index_drupal_node/_search?q=title:testtitlepublished"
     Then the response status code should be 200
     And I save screenshot
 
