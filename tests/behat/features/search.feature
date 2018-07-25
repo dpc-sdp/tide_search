@@ -3,7 +3,7 @@ Feature: Ensure Search API on Bay Elasticsearch work.
   @api @nosuggest
   Scenario: Check for Elasticsearch and search test content.
 
-    Given I am logged in as a user with the "approver" role
+    Given I am logged in as a user with the "administrator" role
     When I go to "admin/config/search/elasticsearch-connector"
     And I save screenshot
     Then I should see the text "ElasticSearch on Bay"
