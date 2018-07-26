@@ -3,9 +3,14 @@ Feature: Ensure Search API on Bay Elasticsearch work.
   @api @nosuggest
   Scenario: Check for Elasticsearch and search test content.
 
+    Given I am logged in as a user with the "administrator" role
     When I go to "admin/config/search/elasticsearch-connector"
     And I save screenshot
     Then I should see the text "ElasticSearch on Bay"
+
+    Given I am logged in as a user with the "administrator" role
+    When I go to "admin/config/search/search-api"
+    And I save screenshot
 
     # Ensure Bay Elasticsearch exist
     When I visit "http://elasticsearch:9200/_cat/indices?v"
@@ -32,6 +37,11 @@ Feature: Ensure Search API on Bay Elasticsearch work.
     And I wait for 5 seconds
 
     # Published Test content should be in search results.
+    When I visit "http://elasticsearch:9200/elasticsearch_index_drupal_node/_search?q=title:testtitlepublished"
+    Then the response status code should be 200
+    And I save screenshot
+
+
     When I send a GET request to "http://elasticsearch:9200/elasticsearch_index_drupal_node/_search?q=title:testtitlepublished"
     Then the rest response status code should be 200
     And the response should be in JSON
