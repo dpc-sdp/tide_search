@@ -13,8 +13,8 @@ dependencies:
     - field.storage.paragraph.field_paragraph_summary
     - field.storage.paragraph.field_paragraph_title
     - field.storage.paragraph.field_paragraph_topic
-    - field.storage.node.field_landing_page_intro_text
     - field.storage.node.field_page_intro_text
+    - field.storage.node.field_landing_page_intro_text
     - field.storage.node.field_node_primary_site
     - field.storage.node.field_node_site
     - field.storage.node.field_landing_page_summary
@@ -90,6 +90,16 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_landing_page_summary
+  field_node_primary_site:
+    label: 'Primary Site » Taxonomy term » Term ID'
+    datasource_id: 'entity:node'
+    property_path: 'field_node_primary_site:entity:tid'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_node_primary_site
+      module:
+        - taxonomy
   field_node_site:
     label: Site
     datasource_id: 'entity:node'
@@ -297,16 +307,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.body
-  tid:
-    label: 'Primary Site » Taxonomy term » Term ID'
-    datasource_id: 'entity:node'
-    property_path: 'field_node_primary_site:entity:tid'
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_node_primary_site
-      module:
-        - taxonomy
   title:
     label: Title
     datasource_id: 'entity:node'
