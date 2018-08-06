@@ -3,26 +3,10 @@ status: true
 dependencies:
   config:
     - field.storage.node.body
-    - field.storage.node.field_landing_page_contact
-    - field.storage.paragraph.field_paragraph_body
-    - field.storage.paragraph.field_paragraph_name
-    - field.storage.node.field_landing_page_component
-    - field.storage.paragraph.field_paragraph_accordion
-    - field.storage.paragraph.field_paragraph_accordion_body
-    - field.storage.paragraph.field_paragraph_accordion_name
-    - field.storage.paragraph.field_paragraph_summary
-    - field.storage.paragraph.field_paragraph_title
-    - field.storage.paragraph.field_paragraph_topic
-    - field.storage.node.field_page_intro_text
-    - field.storage.node.field_landing_page_intro_text
-    - field.storage.node.field_node_primary_site
-    - field.storage.node.field_node_site
-    - field.storage.node.field_landing_page_summary
-    - field.storage.node.field_tags
     - field.storage.node.field_topic
+    - field.storage.node.field_tags
     - search_api.server.elasticsearch_bay
   module:
-    - paragraphs
     - taxonomy
     - search_api
     - node
@@ -31,6 +15,17 @@ name: 'Default node index'
 description: ''
 read_only: false
 field_settings:
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
+  url:
+    label: URI
+    property_path: search_api_url
+    type: string
   body:
     label: Body
     datasource_id: 'entity:node'
@@ -40,212 +35,12 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.body
-  changed:
-    label: Changed
+  title:
+    label: Title
     datasource_id: 'entity:node'
-    property_path: changed
-    type: date
-  created:
-    label: 'Authored on'
-    datasource_id: 'entity:node'
-    property_path: created
-    type: date
-  field_landing_page_contact_body:
-    label: 'Contact Us » Paragraph » Body'
-    datasource_id: 'entity:node'
-    property_path: 'field_landing_page_contact:entity:field_paragraph_body'
+    property_path: title
     type: text
-    boost: !!float 0
-    dependencies:
-      config:
-        - field.storage.node.field_landing_page_contact
-        - field.storage.paragraph.field_paragraph_body
-      module:
-        - paragraphs
-  field_landing_page_contact_name:
-    label: 'Contact Us » Paragraph » Name'
-    datasource_id: 'entity:node'
-    property_path: 'field_landing_page_contact:entity:field_paragraph_name'
-    type: text
-    dependencies:
-      config:
-        - field.storage.node.field_landing_page_contact
-        - field.storage.paragraph.field_paragraph_name
-      module:
-        - paragraphs
-  field_landing_page_intro_text:
-    label: 'Introduction Text'
-    datasource_id: 'entity:node'
-    property_path: field_landing_page_intro_text
-    type: text
-    boost: !!float 0
-    dependencies:
-      config:
-        - field.storage.node.field_landing_page_intro_text
-  field_landing_page_summary:
-    label: Summary
-    datasource_id: 'entity:node'
-    property_path: field_landing_page_summary
-    type: text
-    dependencies:
-      config:
-        - field.storage.node.field_landing_page_summary
-  field_node_primary_site:
-    label: 'Primary Site » Taxonomy term » Term ID'
-    datasource_id: 'entity:node'
-    property_path: 'field_node_primary_site:entity:tid'
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_node_primary_site
-      module:
-        - taxonomy
-  field_node_site:
-    label: Site
-    datasource_id: 'entity:node'
-    property_path: field_node_site
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_node_site
-  field_page_intro_text:
-    label: 'Introduction Text'
-    datasource_id: 'entity:node'
-    property_path: field_page_intro_text
-    type: text
-    boost: !!float 0
-    dependencies:
-      config:
-        - field.storage.node.field_page_intro_text
-  field_paragraph_accordion_body:
-    label: 'Content components » Paragraph » Accordion Content » Paragraph » Body'
-    datasource_id: 'entity:node'
-    property_path: 'field_landing_page_component:entity:field_paragraph_accordion:entity:field_paragraph_accordion_body'
-    type: text
-    boost: !!float 0
-    dependencies:
-      config:
-        - field.storage.node.field_landing_page_component
-        - field.storage.paragraph.field_paragraph_accordion
-        - field.storage.paragraph.field_paragraph_accordion_body
-      module:
-        - paragraphs
-        - paragraphs
-  field_paragraph_accordion_name:
-    label: 'Content components » Paragraph » Accordion Content » Paragraph » Item Name'
-    datasource_id: 'entity:node'
-    property_path: 'field_landing_page_component:entity:field_paragraph_accordion:entity:field_paragraph_accordion_name'
-    type: text
-    boost: !!float 5
-    dependencies:
-      config:
-        - field.storage.node.field_landing_page_component
-        - field.storage.paragraph.field_paragraph_accordion
-        - field.storage.paragraph.field_paragraph_accordion_name
-      module:
-        - paragraphs
-        - paragraphs
-  field_paragraph_body:
-    label: 'Content components » Paragraph » Body'
-    datasource_id: 'entity:node'
-    property_path: 'field_landing_page_component:entity:field_paragraph_body'
-    type: text
-    boost: !!float 0
-    dependencies:
-      config:
-        - field.storage.node.field_landing_page_component
-        - field.storage.paragraph.field_paragraph_body
-      module:
-        - paragraphs
-  field_paragraph_summary:
-    label: 'Content components » Paragraph » Summary'
-    datasource_id: 'entity:node'
-    property_path: 'field_landing_page_component:entity:field_paragraph_summary'
-    type: text
-    boost: !!float 0
-    dependencies:
-      config:
-        - field.storage.node.field_landing_page_component
-        - field.storage.paragraph.field_paragraph_summary
-      module:
-        - paragraphs
-  field_paragraph_title:
-    label: 'Content components » Paragraph » Title'
-    datasource_id: 'entity:node'
-    property_path: 'field_landing_page_component:entity:field_paragraph_title'
-    type: text
-    boost: !!float 13
-    dependencies:
-      config:
-        - field.storage.node.field_landing_page_component
-        - field.storage.paragraph.field_paragraph_title
-      module:
-        - paragraphs
-  field_paragraph_topic:
-    label: 'Content components » Paragraph » Topic'
-    datasource_id: 'entity:node'
-    property_path: 'field_landing_page_component:entity:field_paragraph_topic'
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_landing_page_component
-        - field.storage.paragraph.field_paragraph_topic
-      module:
-        - paragraphs
-  field_paragraph_topic_name:
-    label: 'Content components » Paragraph » Topic » Taxonomy term » Name'
-    datasource_id: 'entity:node'
-    property_path: 'field_landing_page_component:entity:field_paragraph_topic:entity:name'
-    type: text
-    boost: !!float 5
-    dependencies:
-      config:
-        - field.storage.node.field_landing_page_component
-        - field.storage.paragraph.field_paragraph_topic
-      module:
-        - paragraphs
-        - taxonomy
-  field_paragraph_topic_uuid:
-    label: 'Content components » Paragraph » Topic » Taxonomy term » UUID'
-    datasource_id: 'entity:node'
-    property_path: 'field_landing_page_component:entity:field_paragraph_topic:entity:uuid'
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_landing_page_component
-        - field.storage.paragraph.field_paragraph_topic
-      module:
-        - paragraphs
-        - taxonomy
-  field_tags:
-    label: Tags
-    datasource_id: 'entity:node'
-    property_path: field_tags
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_tags
-  field_tags_name:
-    label: 'Tags » Taxonomy term » Name'
-    datasource_id: 'entity:node'
-    property_path: 'field_tags:entity:name'
-    type: text
-    boost: !!float 5
-    dependencies:
-      config:
-        - field.storage.node.field_tags
-      module:
-        - taxonomy
-  field_tags_uuid:
-    label: 'Tags » Taxonomy term » UUID'
-    datasource_id: 'entity:node'
-    property_path: 'field_tags:entity:uuid'
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_tags
-      module:
-        - taxonomy
+    boost: !!float 21
   field_topic:
     label: Topic
     datasource_id: 'entity:node'
@@ -265,6 +60,54 @@ field_settings:
         - field.storage.node.field_topic
       module:
         - taxonomy
+  field_tags_name:
+    label: 'Tags » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_tags:entity:name'
+    type: text
+    boost: !!float 5
+    dependencies:
+      config:
+        - field.storage.node.field_tags
+      module:
+        - taxonomy
+  status:
+    label: Published
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+  uid:
+    label: User
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
+  uuid:
+    label: UUID
+    datasource_id: 'entity:node'
+    property_path: uuid
+    type: string
+  field_tags:
+    label: Tags
+    datasource_id: 'entity:node'
+    property_path: field_tags
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_tags
+  field_tags_uuid:
+    label: 'Tags » Taxonomy term » UUID'
+    datasource_id: 'entity:node'
+    property_path: 'field_tags:entity:uuid'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_tags
+      module:
+        - taxonomy
   field_topic_uuid:
     label: 'Topic » Taxonomy term » UUID'
     datasource_id: 'entity:node'
@@ -275,65 +118,39 @@ field_settings:
         - field.storage.node.field_topic
       module:
         - taxonomy
-  langcode:
-    label: Language
-    datasource_id: 'entity:node'
-    property_path: langcode
-    type: string
   nid:
     label: ID
     datasource_id: 'entity:node'
     property_path: nid
     type: integer
-  node_grants:
-    label: 'Node access information'
-    property_path: search_api_node_grants
-    type: string
-    indexed_locked: true
-    type_locked: true
-    hidden: true
-  status:
-    label: Published
-    datasource_id: 'entity:node'
-    property_path: status
-    type: boolean
-    indexed_locked: true
-    type_locked: true
-  summary_processed:
-    label: 'Body » Processed summary'
-    datasource_id: 'entity:node'
-    property_path: 'body:summary_processed'
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.body
-  title:
-    label: Title
-    datasource_id: 'entity:node'
-    property_path: title
-    type: text
-    boost: !!float 21
   type:
     label: 'Content type'
     datasource_id: 'entity:node'
     property_path: type
     type: string
-  uid:
-    label: User
+  langcode:
+    label: Language
     datasource_id: 'entity:node'
-    property_path: uid
+    property_path: langcode
+    type: string
+  field_node_site:
+    label: Site
+    datasource_id: 'entity:node'
+    property_path: field_node_site
     type: integer
-    indexed_locked: true
-    type_locked: true
-  url:
-    label: URI
-    property_path: search_api_url
-    type: string
-  uuid:
-    label: UUID
+    dependencies:
+      config:
+        - field.storage.node.field_node_site
+  changed:
+    label: Changed
     datasource_id: 'entity:node'
-    property_path: uuid
-    type: string
+    property_path: changed
+    type: date
+  created:
+    label: Created
+    datasource_id: 'entity:node'
+    property_path: created
+    type: date
 datasource_settings:
   'entity:node':
     bundles:
@@ -343,57 +160,43 @@ datasource_settings:
       default: true
       selected: {  }
 processor_settings:
-  add_url: {  }
-  aggregated_field: {  }
-  content_access:
-    weights:
-      preprocess_query: -30
-  entity_status: {  }
-  hierarchy:
-    fields:
-      field_paragraph_topic: taxonomy_term-parent
-      field_tags: taxonomy_term-parent
-      field_topic: taxonomy_term-parent
-    weights:
-      preprocess_index: -45
+  rendered_item: {  }
   html_filter:
     all_fields: true
     fields:
-      - body
-      - field_landing_page_contact_body
-      - field_landing_page_contact_name
-      - field_landing_page_intro_text
-      - field_landing_page_summary
-      - field_page_intro_text
-      - field_paragraph_accordion_body
-      - field_paragraph_accordion_name
-      - field_paragraph_body
-      - field_paragraph_summary
-      - field_paragraph_title
-      - field_paragraph_topic_name
-      - field_paragraph_topic_uuid
-      - field_tags_name
-      - field_tags_uuid
-      - field_topic_name
-      - field_topic_uuid
-      - langcode
-      - summary_processed
-      - title
-      - type
       - url
+      - body
+      - title
+      - field_topic_name
+      - field_tags_name
       - uuid
+      - field_tags_uuid
+      - field_topic_uuid
+      - type
+      - langcode
     title: true
     alt: true
     tags:
-      b: 2
       h1: 5
       h2: 3
       h3: 2
       strong: 2
+      b: 2
     weights:
       preprocess_index: -15
       preprocess_query: -15
-  rendered_item: {  }
+  entity_status: {  }
+  hierarchy:
+    fields:
+      field_topic: taxonomy_term-parent
+      field_tags: taxonomy_term-parent
+    weights:
+      preprocess_index: -45
+  add_url: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
+  aggregated_field: {  }
 tracker_settings:
   default:
     indexing_order: fifo
