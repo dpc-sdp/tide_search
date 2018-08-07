@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * @file
+ * Tide Search module functionality.
+ */
+
+/**
+ * Implements hook_search_api_index_items_alter()
+ *
+ * @param \Drupal\search_api\IndexInterface $index
+ *   The search index on which items will be indexed.
+ * @param \Drupal\search_api\Item\ItemInterface[] $items
+ *   The items that will be indexed.
+ */
+function tide_search_search_api_index_items_alter(\Drupal\search_api\IndexInterface $index, array &$items) {
+  foreach ($items as $item_id => $item) {
+
+    // Format the created field.
+    $created = $item->getField("created");
+    if (isset($created) && !empty($created)) {
+      $value = $created->getValues();
+      $created->setValues([_get_formatted_date($value[0])]);
+      $item->setField("created", $created);
+    }
+
+    // Format the changed field.
+    $changed = $item->getField("changed");
+    if (isset($changed) && !empty($changed)) {
+      $value = $changed->getValues();
+      $changed->setValues([_get_formatted_date($value[0])]);
+      $item->setField("changed", $changed);
+    }
+  }
+}
+
+/**
+ *
+ */
+function _get_formatted_date($ts) {
+  $config = \Drupal::config('system.date');
+  $timezone = $config->get('timezone.default');
+  $date = new \Datetime();
+  $date->setTimezone($timezone);
+  $date = $date->setTimestamp($ts);
+  return $date->format("Y-m-d\TH:i:sP");
+}
