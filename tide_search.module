@@ -39,7 +39,7 @@ function tide_search_search_api_index_items_alter(\Drupal\search_api\IndexInterf
  */
 function _get_formatted_date($ts) {
   $config = \Drupal::config('system.date');
-  $timezone = $config->get('timezone.default');
+  $timezone = new DateTimeZone($config->get('timezone.default'));
   $date = new \Datetime();
   $date->setTimezone($timezone);
   $date = $date->setTimestamp($ts);
