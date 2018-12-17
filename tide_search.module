@@ -14,22 +14,22 @@
  *   The items that will be indexed.
  */
 function tide_search_search_api_index_items_alter(\Drupal\search_api\IndexInterface $index, array &$items) {
-  foreach ($items as $item_id => $item) {
-
-    // Format the created field.
-    $created = $item->getField("created");
-    if (isset($created) && !empty($created)) {
-      $value = $created->getValues();
-      $created->setValues([_get_formatted_date($value[0])]);
-      $item->setField("created", $created);
+  // Get any fields of type date and format it's value to align with RFC-3339.
+  $index_fields = $index->getFields();
+  $date_fields = [];
+  foreach ($index_fields as $index_field) {
+    if ($type = $index_field->getType() === 'date') {
+      $date_fields[] = $index_field;
     }
-
-    // Format the changed field.
-    $changed = $item->getField("changed");
-    if (isset($changed) && !empty($changed)) {
-      $value = $changed->getValues();
-      $changed->setValues([_get_formatted_date($value[0])]);
-      $item->setField("changed", $changed);
+  }
+  foreach ($items as $item_id => $item) {
+    foreach ($date_fields as $date_field) {
+      $date = $item->getField($date_field->getFieldIdentifier());
+      if (isset($date) && !empty($date->getValues())) {
+        $value = $date->getValues();
+        $date->setValues([_get_formatted_date($value[0])]);
+        $item->setField($date_field->getFieldIdentifier(), $date);
+      }
     }
   }
 }
