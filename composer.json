@@ -13,5 +13,13 @@
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         }
+    },
+    "extra": {
+        "patches": {
+            "drupal/elasticsearch_connector": {
+                "Failed to parse node status - https://www.drupal.org/project/elasticsearch_connector/issues/2978005": "https://www.drupal.org/files/issues/2018-06-07/elasticsearch_connector-convert_boolean_fields-2978005-2.patch",
+                "Allow index name flexibility - https://www.drupal.org/project/elasticsearch_connector/issues/3010955": "https://www.drupal.org/files/issues/2018-12-10/elasticsearch_connector-index-name-3010955-6-D8.patch"
+            }
+        }
     }
 }
