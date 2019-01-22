@@ -16,6 +16,6 @@
 
 # Development only: uncomment and set the commit value to fetch Dev Tools at
 # specific commit.
-export GH_COMMIT=0d7e9fe4d48d0190f4ff5cb598942eb6f065a642
+#export GH_COMMIT=COMMIT_SHA
 
 curl https://raw.githubusercontent.com/dpc-sdp/dev-tools/master/install | bash
