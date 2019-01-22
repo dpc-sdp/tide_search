@@ -1,35 +1,33 @@
 Feature: Ensure Search API on Bay Elasticsearch work.
 
-  @api @nosuggest
-  Scenario: Check for Elasticsearch and search test content.
-
+  @api
+  Scenario: Assert that Elasticsearch configuration exists in Drupal
     Given I am logged in as a user with the "administrator" role
     When I go to "admin/config/search/elasticsearch-connector"
-    And I save screenshot
-    Then I should see the text "ElasticSearch on Bay"
+    Then I save screenshot
+    And I should see the text "ElasticSearch on Bay"
 
-    Given I am logged in as a user with the "administrator" role
     When I go to "admin/config/search/search-api"
-    And I save screenshot
+    Then I save screenshot
 
-    # Ensure Bay Elasticsearch exist
     When I visit "http://elasticsearch:9200/_cat/indices?v"
     Then the response status code should be 200
     And the response should contain "elasticsearch_index_drupal_node"
 
-    # Prepare test content.
+  @api
+  Scenario: Assert that Elasticsearch can index content.
     Given topic terms:
       | name       | parent |
       | Test Topic | 0      |
-    Given tags terms:
+    And tags terms:
       | name     | parent |
       | Test Tag | 0      |
-    Given test content:
-      | title                | body:value | moderation_state | field_topic | field_tags |
-      | TESTTITLEPUBLISHED   | TESTBODY   | published        | Test Topic  | Test Tag   |
+    And test content:
+      | title              | body:value | moderation_state | field_topic | field_tags |
+      | TESTTITLEPUBLISHED | TESTBODY   | published        | Test Topic  | Test Tag   |
 
     # Published Test content should be indexed upon save.
-    Given I am logged in as a user with the "approver" role
+    And I am logged in as a user with the "administrator" role
     When I edit test "TESTTITLEPUBLISHED"
     Then the response status code should be 200
     And I select "Published" from "Change to"
@@ -40,7 +38,6 @@ Feature: Ensure Search API on Bay Elasticsearch work.
     When I visit "http://elasticsearch:9200/elasticsearch_index_drupal_node/_search?q=title:testtitlepublished"
     Then the response status code should be 200
     And I save screenshot
-
 
     When I send a GET request to "http://elasticsearch:9200/elasticsearch_index_drupal_node/_search?q=title:testtitlepublished"
     Then the rest response status code should be 200
