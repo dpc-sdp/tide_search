@@ -18,7 +18,7 @@
         "patches": {
             "drupal/elasticsearch_connector": {
                 "Failed to parse node status - https://www.drupal.org/project/elasticsearch_connector/issues/2978005": "https://www.drupal.org/files/issues/2018-06-07/elasticsearch_connector-convert_boolean_fields-2978005-2.patch",
-                "[SDPA-2005] Content is still displaying even when content is deleted - https://www.drupal.org/project/elasticsearch_connector/issues/3010955": "./patches/elasticsearch_connector/SDPA-2005_rewrite-index-for-bulkDelete-3010955-6-combined.patch"
+                "[SDPA-2005] Content is still displaying even when content is deleted - https://www.drupal.org/project/elasticsearch_connector/issues/3010955": "patches/elasticsearch_connector/SDPA-2005_rewrite-index-for-bulkDelete-3010955-6-combined.patch"
             }
         }
     }
