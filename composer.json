@@ -6,7 +6,8 @@
     "require": {
         "drupal/search_api": "^1.11",
         "drupal/elasticsearch_connector": "^5.0-alpha3",
-        "dpc-sdp/tide_core": "^1.0"
+        "dpc-sdp/tide_core": "^1.0",
+        "drupal/metatag": "~1.7.0"
     },
     "repositories": {
         "drupal": {
@@ -17,7 +18,8 @@
     "extra": {
         "patches": {
             "drupal/elasticsearch_connector": {
-                "Failed to parse node status - https://www.drupal.org/project/elasticsearch_connector/issues/2978005": "https://www.drupal.org/files/issues/2018-06-07/elasticsearch_connector-convert_boolean_fields-2978005-2.patch"
+                "Failed to parse node status - https://www.drupal.org/project/elasticsearch_connector/issues/2978005": "https://www.drupal.org/files/issues/2018-06-07/elasticsearch_connector-convert_boolean_fields-2978005-2.patch",
+                "[SDPA-2005] Content is still displaying even when content is deleted - https://www.drupal.org/project/elasticsearch_connector/issues/3010955": "https://raw.githubusercontent.com/dpc-sdp/tide_search/47105d9e538824334384b92c6fdc6a181f4ec23b/patches/elasticsearch_connector/SDPA-2005_rewrite-index-for-bulkDelete-3010955-6-combined.patch"
             }
         }
     }
