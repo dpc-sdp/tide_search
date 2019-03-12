@@ -8,13 +8,13 @@ index 11f7b9c..4114a9e 100644
  use Drupal\search_api_autocomplete\Suggester\SuggesterInterface;
 +use Drupal\elasticsearch_connector\Entity\Cluster;
 +use Drupal\search_api\Entity\Server;
- 
+
  /**
   * Create Elasticsearch Indices.
   */
  class IndexFactory {
 +  const HASH_LENGTH = 32;
- 
+
    /**
     * Build parameters required to index.
 @@ -84,6 +87,18 @@ class IndexFactory {
@@ -39,13 +39,13 @@ index 11f7b9c..4114a9e 100644
 @@ -224,15 +239,29 @@ class IndexFactory {
     */
    public static function getIndexName(IndexInterface $index) {
- 
+
 -    $options = \Drupal::database()->getConnectionOptions();
 -    $site_database = $options['database'];
 -
 +    // Get index machine name.
      $index_machine_name = is_string($index) ? $index : $index->id();
- 
+
 +    // Get prefix and suffix form the cluster if present.
 +    $cluster_id = $index->getServerInstance()->getBackend()->getCluster();
 +    $cluster_options = Cluster::load($cluster_id)->options;
@@ -69,7 +69,7 @@ index 11f7b9c..4114a9e 100644
 +      $index_prefix . $index_machine_name . $index_suffix
      ));
    }
- 
+
 diff --git a/src/Form/ClusterForm.php b/src/Form/ClusterForm.php
 index 0138a68..d1ccbca 100644
 --- a/src/Form/ClusterForm.php
@@ -124,5 +124,5 @@ index 0138a68..d1ccbca 100644
 +      '#weight' => 6.2,
 +    ];
    }
- 
+
    /**
