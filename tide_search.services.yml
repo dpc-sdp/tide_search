@@ -1,0 +1,3 @@
+services:
+  elasticsearch_connector.index_factory:
+    class: Drupal\tide_search\ElasticSearch\Parameters\Factory\TideSearchIndexFactory
