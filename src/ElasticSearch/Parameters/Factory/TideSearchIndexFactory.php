@@ -3,7 +3,6 @@
 namespace Drupal\tide_search\ElasticSearch\Parameters\Factory;
 
 use Drupal\search_api\IndexInterface;
-use Drupal\search_api_autocomplete\Suggester\SuggesterInterface;
 use Drupal\elasticsearch_connector\ElasticSearch\Parameters\Factory\IndexFactory;
 use Drupal\elasticsearch_connector\Entity\Cluster;
 use Drupal\search_api\Entity\Server;
@@ -16,12 +15,15 @@ class TideSearchIndexFactory extends IndexFactory {
   const HASH_LENGTH = 32;
 
   /**
-   * Override the elasticsearch_connector build bulk delete build params.
+   * Override the elasticsearch_connector bulk delete params.
    *
    * @param \Drupal\search_api\IndexInterface $index
+   *   The Search API Index.
    * @param array $ids
+   *   The ids of the entities to delete.
    *
    * @return array
+   *   The query parameters.
    */
   public static function bulkDelete(IndexInterface $index, array $ids) {
     $params = IndexFactory::index($index, TRUE);
