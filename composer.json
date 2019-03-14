@@ -6,7 +6,8 @@
     "require": {
         "drupal/search_api": "^1.11",
         "drupal/elasticsearch_connector": "^5.0-alpha3",
-        "dpc-sdp/tide_core": "^1.0"
+        "dpc-sdp/tide_core": "^1.0",
+        "drupal/metatag": "~1.7.0"
     },
     "repositories": {
         "drupal": {
@@ -18,7 +19,7 @@
         "patches": {
             "drupal/elasticsearch_connector": {
                 "Failed to parse node status - https://www.drupal.org/project/elasticsearch_connector/issues/2978005": "https://www.drupal.org/files/issues/2018-06-07/elasticsearch_connector-convert_boolean_fields-2978005-2.patch",
-                "Allow index name flexibility - https://www.drupal.org/project/elasticsearch_connector/issues/3010955": "https://www.drupal.org/files/issues/2018-12-10/elasticsearch_connector-index-name-3010955-6-D8.patch"
+                "Allow index name flexibility - https://www.drupal.org/project/elasticsearch_connector/issues/3010955#comment-12998995": "https://www.drupal.org/files/issues/2019-03-05/3010955-10.patch"
             }
         }
     }
