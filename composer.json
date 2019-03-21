@@ -6,7 +6,7 @@
     "require": {
         "drupal/search_api": "^1.11",
         "drupal/elasticsearch_connector": "^5.0-alpha3",
-        "dpc-sdp/tide_core": "dev-feature/SDPA-1213_metatag_upgrade as 1.0"
+        "dpc-sdp/tide_core": "dev-develop"
     },
     "repositories": {
         "drupal": {
