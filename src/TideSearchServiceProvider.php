@@ -2,7 +2,6 @@
 
 namespace Drupal\tide_search;
 
-
 use Drupal\Core\DependencyInjection\ServiceModifierInterface;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 
