@@ -4,11 +4,8 @@ namespace Drupal\tide_search\ElasticSearch\Parameters\Factory;
 
 use Drupal\elasticsearch_connector\ElasticSearch\Parameters\Factory\IndexFactory;
 use Drupal\elasticsearch_connector\Entity\Cluster;
-use Drupal\elasticsearch_connector\Event\PrepareIndexEvent;
-use Drupal\elasticsearch_connector\Event\PrepareIndexMappingEvent;
 use Drupal\search_api\Entity\Server;
 use Drupal\search_api\IndexInterface;
-use Drupal\search_api_autocomplete\Suggester\SuggesterInterface;
 
 /**
  * Customised implementation for creation of Elasticsearch Indices.
