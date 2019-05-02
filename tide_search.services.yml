@@ -1,0 +1,3 @@
+services:
+  tide_search.index_factory:
+    class: Drupal\tide_search\ElasticSearch\Parameters\Factory\TideSearchIndexFactory
