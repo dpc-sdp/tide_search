@@ -2,20 +2,20 @@
 
 namespace Drupal\tide_search\ElasticSearch\Parameters\Factory;
 
-use Drupal\search_api\IndexInterface;
 use Drupal\elasticsearch_connector\ElasticSearch\Parameters\Factory\IndexFactory;
 use Drupal\elasticsearch_connector\Entity\Cluster;
 use Drupal\search_api\Entity\Server;
+use Drupal\search_api\IndexInterface;
 
 /**
- * Create Elasticsearch Indices.
+ * Customised implementation for creation of Elasticsearch Indices.
  */
 class TideSearchIndexFactory extends IndexFactory {
 
   const HASH_LENGTH = 32;
 
   /**
-   * Override the elasticsearch_connector bulk delete params.
+   * Overrides the elasticsearch_connector bulk delete params.
    *
    * @param \Drupal\search_api\IndexInterface $index
    *   The Search API Index.
