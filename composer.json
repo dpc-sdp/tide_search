@@ -6,8 +6,7 @@
     "require": {
         "drupal/search_api": "^1.11",
         "drupal/elasticsearch_connector": "^5.0-alpha3",
-        "dpc-sdp/tide_core": "^1.0",
-        "drupal/metatag": "~1.7.0"
+        "dpc-sdp/tide_core": "1.1.0"
     },
     "repositories": {
         "drupal": {
