@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * @file
+ * Install file.
+ */
+
+use Drupal\search_api\Item\Field;
+
+/**
+ * Implements hook_update_dependencies().
+ */
+function tide_search_update_dependencies() {
+  $dependencies['tide_search'][8001] = ['tide_core' => 8009];
+
+  return $dependencies;
+}
+
+/**
+ * Add Path alias field to search index for Topic and Tags.
+ */
+function tide_search_update_8001() {
+  $index_storage = \Drupal::entityTypeManager()
+    ->getStorage('search_api_index');
+  /** @var \Drupal\search_api\IndexInterface $index */
+  $index = $index_storage->load('node');
+  if (!$index) {
+    return;
+  }
+
+  // Index the Topic path.
+  if (!$index->getField('field_topic_path')) {
+    $field_topic_path = new Field($index, 'field_topic_path');
+    $field_topic_path->setType('string');
+    $field_topic_path->setPropertyPath('field_topic:entity:path');
+    $field_topic_path->setDatasourceId('entity:node');
+    $field_topic_path->setLabel('Topic » Taxonomy term » URL alias');
+    $index->addField($field_topic_path);
+  }
+
+  // Index the Tags path.
+  if (!$index->getField('field_tags_path')) {
+    $field_tags_path = new Field($index, 'field_tags_path');
+    $field_tags_path->setType('string');
+    $field_tags_path->setPropertyPath('field_tags:entity:path');
+    $field_tags_path->setDatasourceId('entity:node');
+    $field_tags_path->setLabel('Tags » Taxonomy term » URL alias');
+    $index->addField($field_tags_path);
+  }
+
+  $index->save();
+}
