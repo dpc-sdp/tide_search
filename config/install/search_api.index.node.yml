@@ -60,6 +60,17 @@ field_settings:
         - field.storage.node.field_topic
       module:
         - taxonomy
+  field_topic_path:
+    label: 'Topic » Taxonomy term » URL alias'
+    datasource_id: 'entity:node'
+    property_path: 'field_topic:entity:path'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_topic
+      module:
+        - taxonomy
+        - path
   field_tags_name:
     label: 'Tags » Taxonomy term » Name'
     datasource_id: 'entity:node'
@@ -71,6 +82,17 @@ field_settings:
         - field.storage.node.field_tags
       module:
         - taxonomy
+  field_tags_path:
+    label: 'Tags » Taxonomy term » URL alias'
+    datasource_id: 'entity:node'
+    property_path: 'field_tags:entity:path'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_tags
+      module:
+        - taxonomy
+        - path
   status:
     label: Published
     datasource_id: 'entity:node'
@@ -168,7 +190,9 @@ processor_settings:
       - body
       - title
       - field_topic_name
+      - field_topic_path
       - field_tags_name
+      - field_tags_path
       - uuid
       - field_tags_uuid
       - field_topic_uuid
