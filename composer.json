@@ -7,6 +7,7 @@
         "nodespark/des-connector": "dev-6.x as 6.x-dev",
         "drupal/search_api": "^1.11",
         "drupal/elasticsearch_connector": "^6.0-alpha2",
+        "nodespark/des-connector": "5.x-dev as 6.x-dev",
         "dpc-sdp/tide_core": "^1.5.1"
     },
     "repositories": {
