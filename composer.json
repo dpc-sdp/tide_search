@@ -13,12 +13,5 @@
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         }
-    },
-    "extra": {
-        "patches": {
-            "drupal/elasticsearch_connector": {
-                "Allow index name flexibility - https://www.drupal.org/project/elasticsearch_connector/issues/3010955#comment-12998995": "https://www.drupal.org/files/issues/2019-03-05/3010955-10.patch"
-            }
-        }
     }
 }
