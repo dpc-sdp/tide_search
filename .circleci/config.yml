@@ -43,5 +43,9 @@ workflows:
   version: 2
   main:
     jobs:
-      - build
-      - build_suggest
+      - build:
+          context:
+            - sdpdeploy
+      - build_suggest:
+          context:
+            - sdpdeploy
