@@ -45,7 +45,6 @@ Feature: Ensure Search API on Bay Elasticsearch work.
     And the JSON node "hits" should exist
     And the JSON node "hits.hits" should exist
     And the JSON node "hits.hits[0]._index" should be equal to "elasticsearch_index_drupal_node"
-    And the JSON node "hits.hits[0]._type" should be equal to "node"
     And the JSON node "hits.hits[0]._source" should exist
     And the JSON node "hits.hits[0]._source.title[0]" should be equal to "TESTTITLEPUBLISHED"
     And the JSON node "hits.hits[0]._source.body[0]" should be equal to "TESTBODY"
