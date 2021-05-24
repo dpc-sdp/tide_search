@@ -43,7 +43,6 @@ class TideSearchIndexFactory extends IndexFactory {
       $params['body'][] = [
         'delete' => [
           '_index' => $params['index'],
-          '_type' => $params['type'],
           '_id' => $id,
         ],
       ];
