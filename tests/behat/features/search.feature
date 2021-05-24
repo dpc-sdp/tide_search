@@ -63,4 +63,6 @@ Feature: Ensure Search API on Bay Elasticsearch work.
     Then the response status code should be 200
     And the response should be in JSON
     And the JSON node "hits" should exist
-    And the JSON node "hits.total" should be equal to "0"
+    And the JSON node "hits.total" should exist
+    And the JSON node "hits.total.value" should exist
+    And the JSON node "hits.total.value" should be equal to "0"
