@@ -13,12 +13,5 @@
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         }
-    },
-    "extra": {
-        "patches": {
-            "drupal/elasticsearch_connector": {
-                "Type is missing - https://www.drupal.org/project/elasticsearch_connector/issues/3183641": "https://www.drupal.org/files/issues/2021-01-11/3183641-4.patch"
-            }
-        }
     }
 }
