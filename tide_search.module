@@ -13,19 +13,23 @@ use Drupal\search_api\IndexInterface;
 function tide_search_search_api_index_items_alter(IndexInterface $index, array &$items) {
   // Get any fields of type date and format it's value to align with RFC-3339.
   $index_fields = $index->getFields();
-  $date_fields = [];
-  foreach ($index_fields as $index_field) {
-    if ($type = $index_field->getType() === 'date') {
-      $date_fields[] = $index_field;
+  $date_field_ids = [];
+  foreach ($index_fields as $field_id => $index_field) {
+    if ($index_field->getType() === 'date') {
+      $date_field_ids[$field_id] = $field_id;
     }
   }
-  foreach ($items as $item_id => $item) {
-    foreach ($date_fields as $date_field) {
-      $date = $item->getField($date_field->getFieldIdentifier());
-      if (isset($date) && !empty($date->getValues())) {
-        $value = $date->getValues();
-        $date->setValues([_tide_search_get_formatted_date($value[0])]);
-        $item->setField($date_field->getFieldIdentifier(), $date);
+  foreach ($items as $item) {
+    foreach ($date_field_ids as $field_id) {
+      $date_field = $item->getField($field_id);
+      if ($date_field) {
+        $values = $date_field->getValues();
+        foreach ($values as &$value) {
+          $value = _tide_search_get_formatted_date($value);
+        }
+        unset($value);
+        $date_field->setValues($values);
+        $item->setField($field_id, $date_field);
       }
     }
   }
@@ -41,6 +45,9 @@ function tide_search_search_api_index_items_alter(IndexInterface $index, array &
  *   Formatted date.
  */
 function _tide_search_get_formatted_date($ts) {
+  if (!is_numeric($ts)) {
+    return $ts;
+  }
   $config = \Drupal::config('system.date');
   $timezone = new DateTimeZone($config->get('timezone.default'));
   $date = new \Datetime();
