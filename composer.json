@@ -5,7 +5,7 @@
     "license": "GPL-2.0-or-later",
     "require": {
         "drupal/search_api": "^1.11",
-        "drupal/elasticsearch_connector": "^6.0-alpha2",
+        "drupal/elasticsearch_connector": "^7.0@alpha",
         "dpc-sdp/tide_core": "^2.0.0"
     },
     "repositories": {
