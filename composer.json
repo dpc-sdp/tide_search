@@ -17,7 +17,7 @@
     "extra": {
         "patches": {
             "drupal/elasticsearch_connector": {
-                "deleteMapping() throws undefined error - https://www.drupal.org/project/elasticsearch_connector/issues/3224368": "https://www.drupal.org/files/issues/2021-07-20/%5BdeleteMapping-throws-undefined-error%5D-%5B3224368%5D-%5B1%5D.patch"
+                "deleteMapping() throws undefined error - https://www.drupal.org/project/elasticsearch_connector/issues/2824539": "https://www.drupal.org/files/issues/2021-07-20/%5BdeleteMapping-throws-undefined-error%5D-%5B3224368%5D-%5B1%5D_0.patch"
             }
         }
     }
