@@ -6,13 +6,19 @@
     "require": {
         "drupal/search_api": "^1.11",
         "drupal/elasticsearch_connector": "^6.0-alpha2",
-        "dpc-sdp/tide_core": "^2.0.0",
-        "elasticsearch/elasticsearch": "6.7.2"
+        "dpc-sdp/tide_core": "^2.0.0"
     },
     "repositories": {
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        }
+    },
+    "extra": {
+        "patches": {
+            "drupal/elasticsearch_connector": {
+                "deleteMapping() throws undefined error - https://www.drupal.org/project/elasticsearch_connector/issues/3224368": "https://www.drupal.org/files/issues/2021-07-20/%5BdeleteMapping-throws-undefined-error%5D-%5B3224368%5D-%5B1%5D.patch"
+            }
         }
     }
 }
