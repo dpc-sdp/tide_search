@@ -40,7 +40,7 @@ Feature: Ensure Search API on Bay Elasticsearch work.
     And I save screenshot
 
     When I send a GET request to "http://elasticsearch:9200/elasticsearch_index_drupal_node/_search?q=title:testtitlepublished"
-    Then the rest response status code should be 200
+    Then the response status code should be 200
     And the response should be in JSON
     And the JSON node "hits" should exist
     And the JSON node "hits.hits" should exist
@@ -61,7 +61,7 @@ Feature: Ensure Search API on Bay Elasticsearch work.
 
     # Unpublished Test content should not be in search results.
     When I send a GET request to "http://elasticsearch:9200/elasticsearch_index_drupal_node/_search?q=title:testtitlepublished"
-    Then the rest response status code should be 200
+    Then the response status code should be 200
     And the response should be in JSON
     And the JSON node "hits" should exist
     And the JSON node "hits.total" should be equal to "0"
