@@ -11,6 +11,7 @@ use Drupal\search_api\Item\Field;
  * Implements hook_update_dependencies().
  */
 function tide_search_update_dependencies() {
+  $dependencies = [];
   $dependencies['tide_search'][8001] = ['tide_core' => 8009];
 
   return $dependencies;
