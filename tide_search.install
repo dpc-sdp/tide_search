@@ -51,3 +51,49 @@ function tide_search_update_8001() {
 
   $index->save();
 }
+
+/**
+ * Adds field_landing_page_summary field to search api, and updates settings.
+ */
+function tide_search_update_8002() {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('search_api.index.node');
+  $dependencies = $config->get('dependencies.config');
+  if (!in_array('field.storage.node.field_landing_page_summary', $dependencies)) {
+    $dependencies[] = 'field.storage.node.field_landing_page_summary';
+    $config->set('dependencies.config', $dependencies);
+  }
+  $field_settings = $config->get('field_settings');
+  if (isset($field_settings['field_topic_name']['type']) && $field_settings['field_topic_name']['type'] === 'text') {
+    $field_settings['field_topic_name']['type'] = 'string';
+    if (isset($field_settings['field_topic_name']['boost'])) {
+      unset($field_settings['field_topic_name']['boost']);
+    }
+  }
+  if (isset($field_settings['field_tags_name']['type']) && $field_settings['field_tags_name']['type'] === 'text') {
+    $field_settings['field_tags_name']['type'] = 'string';
+    if (isset($field_settings['field_tags_name']['boost'])) {
+      unset($field_settings['field_tags_name']['boost']);
+    }
+  }
+  if (!isset($field_settings['field_landing_page_summary'])) {
+    $field_settings['field_landing_page_summary'] = [
+      'label' => 'Summary',
+      'datasource_id' => 'entity:node',
+      'property_path' => 'field_landing_page_summary',
+      'type' => 'text',
+      'dependencies' => [
+        'config' => [
+          'field.storage.node.field_landing_page_summary',
+        ],
+      ],
+    ];
+    $config->set('field_settings', $field_settings);
+  }
+  $processor_settings = $config->get('processor_settings.html_filter.fields');
+  if (!in_array('field_landing_page_summary', $processor_settings)) {
+    $processor_settings[] = 'field_landing_page_summary';
+    $config->set('processor_settings.html_filter.fields', $processor_settings);
+  }
+  $config->save();
+}
