@@ -11,3 +11,8 @@ options:
   username: ''
   password: ''
   timeout: '3'
+  rewrite:
+    rewrite_index: 0
+    index:
+      prefix: null
+      suffix: null
