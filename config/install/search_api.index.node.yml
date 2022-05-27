@@ -139,14 +139,6 @@ field_settings:
         - field.storage.node.field_topic
       module:
         - taxonomy
-  field_landing_page_summary:
-    label: Summary
-    datasource_id: 'entity:node'
-    property_path: field_landing_page_summary
-    type: text
-    dependencies:
-      config:
-        - field.storage.node.field_landing_page_summary
   nid:
     label: ID
     datasource_id: 'entity:node'
