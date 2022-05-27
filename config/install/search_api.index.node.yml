@@ -5,7 +5,6 @@ dependencies:
     - field.storage.node.body
     - field.storage.node.field_topic
     - field.storage.node.field_tags
-    - field.storage.node.field_landing_page_summary
     - search_api.server.elasticsearch_bay
   module:
     - taxonomy
@@ -194,7 +193,6 @@ processor_settings:
       - field_tags_path
       - uuid
       - field_tags_uuid
-      - field_landing_page_summary
       - field_topic_uuid
       - type
       - langcode
