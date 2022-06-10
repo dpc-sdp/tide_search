@@ -5,7 +5,6 @@ dependencies:
     - field.storage.node.body
     - field.storage.node.field_topic
     - field.storage.node.field_tags
-    - field.storage.node.field_landing_page_summary
     - search_api.server.elasticsearch_bay
   module:
     - taxonomy
@@ -139,14 +138,6 @@ field_settings:
         - field.storage.node.field_topic
       module:
         - taxonomy
-  field_landing_page_summary:
-    label: Summary
-    datasource_id: 'entity:node'
-    property_path: field_landing_page_summary
-    type: text
-    dependencies:
-      config:
-        - field.storage.node.field_landing_page_summary
   nid:
     label: ID
     datasource_id: 'entity:node'
@@ -202,7 +193,6 @@ processor_settings:
       - field_tags_path
       - uuid
       - field_tags_uuid
-      - field_landing_page_summary
       - field_topic_uuid
       - type
       - langcode
