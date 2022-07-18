@@ -6,6 +6,15 @@
  */
 
 use Drupal\search_api\Item\Field;
+use Drupal\tide_search\TideSearchOperation;
+
+/**
+ * Implements hook_install().
+ */
+function tide_search_install() {
+  $tideSearchOperation = new TideSearchOperation();
+  $tideSearchOperation->remove_tide_alert_from_datasource();
+}
 
 /**
  * Implements hook_update_dependencies().
@@ -96,4 +105,12 @@ function tide_search_update_8002() {
     $config->set('processor_settings.html_filter.fields', $processor_settings);
   }
   $config->save();
+}
+
+/**
+ * Removes alert content type from indexing.
+ */
+function tide_search_update_8003() {
+  $tideSearchOperation = new TideSearchOperation();
+  $tideSearchOperation->remove_tide_alert_from_datasource();
 }
