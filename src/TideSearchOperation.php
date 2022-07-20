@@ -3,10 +3,11 @@
 namespace Drupal\tide_search;
 
 /**
- * Remove tide_alert content type from data source if module exists.
+ * Tide search modules operations.
  */
 class TideSearchOperation {
 
+  // Remove tide_alert content type from data source if module exists.
   public function removeTideAlertFromDatasource() {
     if (\Drupal::moduleHandler()->moduleExists('tide_alert')) {
       $config_factory = \Drupal::configFactory();
