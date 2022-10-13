@@ -26,7 +26,7 @@ class TideSearchCommands extends DrushCommands {
    *
    * @command tide:search-audit-nodes
    * @aliases tide-san,tide-search-audit-nodes
-   * 
+   *
    * @throws \Exception
    */
   public function auditSearchContent($indexId) {
