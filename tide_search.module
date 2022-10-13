@@ -56,3 +56,15 @@ function _tide_search_get_formatted_date($ts) {
 
   return $date->format('Y-m-d\TH:i:sP');
 }
+
+/**
+ * Implements hook_admin_audit_trail_handlers().
+ */
+function tide_search_admin_audit_trail_handlers() {
+  // Page event log handler.
+  $handlers = [];
+  $handlers['tide_search'] = [
+    'title' => t('Tide Search'),
+  ];
+  return $handlers;
+}
