@@ -84,6 +84,7 @@ class TideSearchCommands extends DrushCommands {
     }
     $total = $indexes[$indexId]->getTrackerInstance()->getTotalItemsCount();
     $no_of_batches = ceil($total/10000);
+    // If the result set is more than 10000 then run it in batch.
     if ($no_of_batches > 1) {
       $nid_starting_point = 0;
       for ($i = 1; $i <= $no_of_batches; $i++) {
@@ -100,11 +101,14 @@ class TideSearchCommands extends DrushCommands {
         foreach ($results->getResultItems() as $item) {
           $es_nids[] = self::convertToNodeIds($item);
         }
+        // The last nid will be the starting point for next batch.
         $nid_starting_point = end($es_nids);
       }
+      // Will remove if any duplicate values.
       $es_nids = array_unique($es_nids);
       return $es_nids;
     }
+    // Run in single request.
     try {
       $query = $indexes[$indexId]->query();
       $query->range(0, $total);
