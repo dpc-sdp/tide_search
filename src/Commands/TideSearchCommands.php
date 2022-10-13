@@ -3,6 +3,7 @@
 namespace Drupal\tide_search\Commands;
 
 use Drush\Commands\DrushCommands;
+use Drupal\search_api\Utility\CommandHelper;
 
 /**
  * A Drush commandfile.
@@ -23,26 +24,33 @@ class TideSearchCommands extends DrushCommands {
    *   Update the domains on the site taxonomy based on an environment variable.
    *
    * @command tide:search-audit-nodes
-   * @aliases tide-snid,tide-search-audit-nodes
+   * @aliases tide-san,tide-search-audit-nodes
    * @throws \Exception
    */
   public function auditSearchContent($indexId) {
-    $nids_in_search_index = $this->getNidsFromSearchIndex($indexId);
-    $nids_of_published_content = $this->getPublishedNodeIds();
-    $nids_diff = array_diff($nids, $es_nids); 
-    // content that is published but NOT searchable in the index.
-    $not_in_index = array_diff($nids, $es_nids);
-    $ops = 'Not in index';
-    $description = 'The following nodes are published but not indexed in the search - %nids';
-    $this->auditIntoLog($not_in_index, $ops, $description);
-    // content that is in the search index but is NOT published.
-    $not_published = array_diff($es_nids, $nids);
-    $ops = 'Not published';
-    $description = 'The following nodes are in search index but not published - %nids';
-    $this->auditIntoLog($not_published, $ops, $description);
-    $nids = $this->commandHelper->notSearchablePublsihedContentIndexCommand($indexId);
-    $message = $nids_diff ? "Results are logged in the audit trail." : "There is no difference found between search index and published content node ids.";
-    return $message;
+    try {
+      $nids_in_search_index = self::getNidsFromSearchIndex($indexId);
+      $nids_of_published_content = self::getPublishedNodeIds();
+      // content that is published but NOT searchable in the index.
+      $not_in_index = array_diff($nids_of_published_content, $nids_in_search_index);
+      $ops = 'Not in index';
+      $description = 'The following nodes are published but not indexed in the search - %nids';
+      if (!empty($not_in_index)) {
+        self::auditIntoLog($not_in_index, $ops, $description);
+      }
+      // content that is in the search index but is NOT published.
+      $not_published = array_diff($nids_in_search_index, $nids_of_published_content);
+      $ops = 'Not published';
+      $description = 'The following nodes are in search index but not published - %nids';
+      if (!empty($not_published)) { 
+        self::auditIntoLog($not_published, $ops, $description);
+      }
+      $message = ($not_published || $not_in_index) ? 'Check the audit trail.' : 'Nothing to log.';
+      return $message;
+    }
+    catch (ConsoleException $exception) {
+      throw new \Exception($exception->getMessage());
+    }
   }
 
   /**
@@ -68,8 +76,9 @@ class TideSearchCommands extends DrushCommands {
    * Helper to get node Ids from search index.
    */
   public static function getNidsFromSearchIndex($indexId) {
+    $command_helper = new CommandHelper(\Drupal::entityTypeManager(), \Drupal::moduleHandler(), \Drupal::service('event_dispatcher'), 'dt');
     $es_nids = [];
-    $indexes = $this->loadIndexes([$indexId]);
+    $indexes = $command_helper->loadIndexes([$indexId]);
     if (empty($indexes[$indexId])) {
       throw new ConsoleException($this->t('@index was not found'));
     }
@@ -89,7 +98,7 @@ class TideSearchCommands extends DrushCommands {
           throw new ConsoleException($e->getMessage(), 0, $e);
         }
         foreach ($results->getResultItems() as $item) {
-          $es_nids[] = convertToNodeIds($item);
+          $es_nids[] = self::convertToNodeIds($item);
         }
         $nid_starting_point = end($es_nids);
       }
@@ -105,7 +114,7 @@ class TideSearchCommands extends DrushCommands {
       throw new ConsoleException($e->getMessage(), 0, $e);
     }
     foreach ($results->getResultItems() as $item) {
-        $es_nids[] = convertToNodeIds($item);
+        $es_nids[] = self::convertToNodeIds($item);
     }
     $es_nids = array_unique($es_nids);
     return $es_nids;
@@ -130,7 +139,6 @@ class TideSearchCommands extends DrushCommands {
       ->getStorage('node')
       ->getQuery()
       ->condition('type', 'alert', '!=')
-      ->condition('type', 'grant', '!=')
       ->condition('status', 1)
       ->execute();
 
