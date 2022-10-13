@@ -17,32 +17,34 @@ use Drupal\search_api\Utility\CommandHelper;
  *   - http://cgit.drupalcode.org/devel/tree/drush.services.yml
  */
 class TideSearchCommands extends DrushCommands {
+
   /**
-   * Audit the node ids that needs to be published or indexed based on search index.
+   * Audit nodeids that needs to be published/indexed based on search index.
    *
    * @usage drush tide-search-audit-nodes
    *   Update the domains on the site taxonomy based on an environment variable.
    *
    * @command tide:search-audit-nodes
    * @aliases tide-san,tide-search-audit-nodes
+   * 
    * @throws \Exception
    */
   public function auditSearchContent($indexId) {
     try {
       $nids_in_search_index = self::getNidsFromSearchIndex($indexId);
       $nids_of_published_content = self::getPublishedNodeIds();
-      // content that is published but NOT searchable in the index.
+      // Content that is published but NOT searchable in the index.
       $not_in_index = array_diff($nids_of_published_content, $nids_in_search_index);
       $ops = 'Not in index';
-      $description = 'The following nodes are published but not indexed in the search - %nids';
+      $description = 'published but not indexed in the search';
       if (!empty($not_in_index)) {
         self::auditIntoLog($not_in_index, $ops, $description);
       }
-      // content that is in the search index but is NOT published.
+      // Content that is in the search index but is NOT published.
       $not_published = array_diff($nids_in_search_index, $nids_of_published_content);
       $ops = 'Not published';
-      $description = 'The following nodes are in search index but not published - %nids';
-      if (!empty($not_published)) { 
+      $description = 'in search index but not published';
+      if (!empty($not_published)) {
         self::auditIntoLog($not_published, $ops, $description);
       }
       $message = ($not_published || $not_in_index) ? 'Check the audit trail.' : 'Nothing to log.';
@@ -60,8 +62,9 @@ class TideSearchCommands extends DrushCommands {
     $log = [
       'type' => 'tide_search',
       'operation' => $ops,
-      'description' => t($description, [
+      'description' => t('The following nodes are %des - %nids', [
         '%nids' => implode(", ", $nids),
+        '%des' => $description,
       ]),
       'ref_numeric' => 1,
       'ref_char' => 'drush sapi-nsc node results',
@@ -80,10 +83,10 @@ class TideSearchCommands extends DrushCommands {
     $es_nids = [];
     $indexes = $command_helper->loadIndexes([$indexId]);
     if (empty($indexes[$indexId])) {
-      throw new ConsoleException($this->t('@index was not found'));
+      throw new ConsoleException(t('@index was not found'));
     }
     $total = $indexes[$indexId]->getTrackerInstance()->getTotalItemsCount();
-    $no_of_batches = ceil($total/10000);
+    $no_of_batches = ceil($total / 10000);
     // If the result set is more than 10000 then run it in batch.
     if ($no_of_batches > 1) {
       $nid_starting_point = 0;
@@ -93,7 +96,7 @@ class TideSearchCommands extends DrushCommands {
           $query->range(0, 10000);
           $query->sort('nid');
           $query->addCondition('nid', $nid_starting_point, '>');
-          $results =  $query->execute();
+          $results = $query->execute();
         }
         catch (SearchApiException $e) {
           throw new ConsoleException($e->getMessage(), 0, $e);
@@ -118,13 +121,13 @@ class TideSearchCommands extends DrushCommands {
       throw new ConsoleException($e->getMessage(), 0, $e);
     }
     foreach ($results->getResultItems() as $item) {
-        $es_nids[] = self::convertToNodeIds($item);
+      $es_nids[] = self::convertToNodeIds($item);
     }
     $es_nids = array_unique($es_nids);
     return $es_nids;
   }
 
-   /**
+  /**
    * Helper to convert node ids.
    */
   public static function convertToNodeIds($item) {
@@ -148,4 +151,5 @@ class TideSearchCommands extends DrushCommands {
 
     return $nids;
   }
+
 }
