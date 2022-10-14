@@ -30,24 +30,29 @@ class TideSearchCommands extends DrushCommands {
    * @throws \Exception
    */
   public function auditSearchContent($indexId) {
+    $message = '';
     try {
       $nids_in_search_index = self::getNidsFromSearchIndex($indexId);
       $nids_of_published_content = self::getPublishedNodeIds();
       // Content that is published but NOT searchable in the index.
       $not_in_index = array_diff($nids_of_published_content, $nids_in_search_index);
-      $ops = 'Not in index';
-      $description = 'published but not indexed in the search';
+      $ops = "Not in index";
+      $description = "published but not indexed in the search";
       if (!empty($not_in_index)) {
+        $not_in_index = implode(", ", $not_in_index);
         self::auditIntoLog($not_in_index, $ops, $description);
+        $message = $message . "The following nodes are published but not indexed in the search - " . $not_in_index . "\n";
       }
       // Content that is in the search index but is NOT published.
       $not_published = array_diff($nids_in_search_index, $nids_of_published_content);
-      $ops = 'Not published';
-      $description = 'in search index but not published';
+      $ops = "Not published";
+      $description = "in search index but not published";
       if (!empty($not_published)) {
+        $not_published = implode(", ", $not_published);
         self::auditIntoLog($not_published, $ops, $description);
+        $message = $message . "The following nodes are in search index but not published - " . $not_published . "\n";
       }
-      $message = ($not_published || $not_in_index) ? 'Check the audit trail.' : 'Nothing to log.';
+      $message = ($not_published || $not_in_index) ? $message . "Logged in audit trail as well." : "Nothing to log.";
       return $message;
     }
     catch (ConsoleException $exception) {
@@ -60,17 +65,17 @@ class TideSearchCommands extends DrushCommands {
    */
   public static function auditIntoLog($nids, $ops, $description) {
     $log = [
-      'type' => 'tide_search',
-      'operation' => $ops,
-      'description' => t('The following nodes are %des - %nids', [
-        '%nids' => implode(", ", $nids),
-        '%des' => $description,
+      "type" => "tide_search",
+      "operation" => $ops,
+      "description" => t("The following nodes are %des - %nids", [
+        "%nids" => $nids,
+        "%des" => $description,
       ]),
-      'ref_numeric' => 1,
-      'ref_char' => 'drush sapi-nsc node results',
+      "ref_numeric" => 1,
+      "ref_char" => "drush sapi-nsc node results",
     ];
     // Add the log to the "admin_audit_trail" table.
-    if (function_exists('admin_audit_trail_insert')) {
+    if (function_exists("admin_audit_trail_insert")) {
       admin_audit_trail_insert($log);
     }
   }
