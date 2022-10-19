@@ -106,8 +106,8 @@ class TideSearchCommands extends DrushCommands {
         catch (SearchApiException $e) {
           throw new ConsoleException($e->getMessage(), 0, $e);
         }
-        foreach ($results->getResultItems() as $item) {
-          $es_nids[] = self::convertToNodeIds($item);
+        foreach ($results->getAllExtraData()['elasticsearch_response']['hits']['hits'] as $item) {
+          $es_nids[] = $item['_source']['nid'][0];
         }
         // The last nid will be the starting point for next batch.
         $nid_starting_point = end($es_nids);
@@ -125,22 +125,11 @@ class TideSearchCommands extends DrushCommands {
     catch (SearchApiException $e) {
       throw new ConsoleException($e->getMessage(), 0, $e);
     }
-    foreach ($results->getResultItems() as $item) {
-      $es_nids[] = self::convertToNodeIds($item);
+    foreach ($results->getAllExtraData()['elasticsearch_response']['hits']['hits'] as $item) {
+      $es_nids[] = $item['_source']['nid'][0];
     }
     $es_nids = array_unique($es_nids);
     return $es_nids;
-  }
-
-  /**
-   * Helper to convert node ids.
-   */
-  public static function convertToNodeIds($item) {
-    $item_id = $item->getId();
-    if (!empty($item_id) && (strpos($item_id, 'entity:node/') !== FALSE) && (strpos($item_id, ':en') !== FALSE)) {
-      $item_id = str_replace(['entity:node/', ':en'], "", $item_id);
-    }
-    return $item_id;
   }
 
   /**
