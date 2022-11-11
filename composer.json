@@ -13,5 +13,12 @@
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         }
+    },
+    "extra": {
+        "drush": {
+            "services": {
+                "drush.services.yml": "^10"
+            }
+        }
     }
 }
