@@ -37,7 +37,7 @@ class TideSearchIndexFactory extends IndexFactory {
               "front_ngram" => [
                 "type" => "edge_ngram",
                 "min_gram" => "1",
-                "max_gram" => "12"
+                "max_gram" => "12",
               ],
             ],
             "analyzer" => [
@@ -46,17 +46,17 @@ class TideSearchIndexFactory extends IndexFactory {
                   "cjk_width",
                   "lowercase",
                   "asciifolding",
-                  "front_ngram"
+                  "front_ngram",
                 ],
-                "tokenizer" => "standard"
+                "tokenizer" => "standard",
               ],
               "q_prefix" => [
                 "filter" => [
                   "cjk_width",
                   "lowercase",
-                  "asciifolding"
+                  "asciifolding",
                 ],
-                "tokenizer" => "standard"
+                "tokenizer" => "standard",
               ],
             ],
           ],
@@ -68,13 +68,13 @@ class TideSearchIndexFactory extends IndexFactory {
               "fields" => [
                 "keyword" => [
                   "type" => "keyword",
-                  "ignore_above" => 256
+                  "ignore_above" => 256,
                 ],
                 "prefix" => [
                   "type" => "text",
                   "index_options" => "docs",
                   "analyzer" => "i_prefix",
-                  "search_analyzer" => "q_prefix"
+                  "search_analyzer" => "q_prefix",
                 ],
               ],
             ],
@@ -83,13 +83,13 @@ class TideSearchIndexFactory extends IndexFactory {
               "fields" => [
                 "keyword" => [
                   "type" => "keyword",
-                  "ignore_above" => 256
+                  "ignore_above" => 256,
                 ],
                 "prefix" => [
                   "type" => "text",
                   "index_options" => "docs",
                   "analyzer" => "i_prefix",
-                  "search_analyzer" => "q_prefix"
+                  "search_analyzer" => "q_prefix",
                 ],
               ],
             ],
