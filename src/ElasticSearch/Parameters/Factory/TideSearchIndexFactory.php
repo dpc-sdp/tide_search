@@ -4,6 +4,7 @@ namespace Drupal\tide_search\ElasticSearch\Parameters\Factory;
 
 use Drupal\elasticsearch_connector\ElasticSearch\Parameters\Factory\IndexFactory;
 use Drupal\elasticsearch_connector\Entity\Cluster;
+use Drupal\elasticsearch_connector\Event\PrepareIndexEvent;
 use Drupal\search_api\Entity\Server;
 use Drupal\search_api\IndexInterface;
 
@@ -13,6 +14,96 @@ use Drupal\search_api\IndexInterface;
 class TideSearchIndexFactory extends IndexFactory {
 
   const HASH_LENGTH = 32;
+
+  /**
+   * Override the build parameters required to create an index.
+   *
+   * @param \Drupal\search_api\IndexInterface $index
+   *
+   * @return array
+   */
+  public static function create(IndexInterface $index) {
+    $indexName = IndexFactory::getIndexName($index);
+    $indexConfig = [
+      'index' => $indexName,
+      'body' => [
+        'settings' => [
+          'number_of_shards' => $index->getOption('number_of_shards', 5),
+          'number_of_replicas' => $index->getOption('number_of_replicas', 1),
+          'analysis' => [
+            "filter" => [
+              "front_ngram" => [
+                "type" => "edge_ngram",
+                "min_gram" => "1",
+                "max_gram" => "12"
+              ]
+            ],
+            "analyzer" => [
+              "i_prefix" => [
+                "filter" => [
+                  "cjk_width",
+                  "lowercase",
+                  "asciifolding",
+                  "front_ngram"
+                ],
+                "tokenizer" => "standard"
+              ],
+              "q_prefix" => [
+                "filter" => [
+                  "cjk_width",
+                  "lowercase",
+                  "asciifolding"
+                ],
+                "tokenizer" => "standard"
+              ]
+            ]
+          ]
+        ],
+        'mappings' => [
+          "properties" => [
+            "title" => [
+              "type" => "text",
+              "fields" => [
+                "keyword" => [
+                  "type" => "keyword",
+                  "ignore_above" => 256
+                ],
+                "prefix" => [
+                  "type" => "text",
+                  "index_options" => "docs",
+                  "analyzer" => "i_prefix",
+                  "search_analyzer" => "q_prefix"
+                ]
+              ]
+            ],
+            "summary_processed" => [
+              "type" => "text",
+              "fields" => [
+                "keyword" => [
+                  "type" => "keyword",
+                  "ignore_above" => 256
+                ],
+                "prefix" => [
+                  "type" => "text",
+                  "index_options" => "docs",
+                  "analyzer" => "i_prefix",
+                  "search_analyzer" => "q_prefix"
+                ]
+              ]
+            ]
+          ]
+        ],
+      ],
+    ];
+
+    // Allow other modules to alter index config before we create it.
+    $dispatcher = \Drupal::service('event_dispatcher');
+    $prepareIndexEvent = new PrepareIndexEvent($indexConfig, $indexName);
+    $event = $dispatcher->dispatch($prepareIndexEvent, PrepareIndexEvent::PREPARE_INDEX);
+    $indexConfig = $event->getIndexConfig();
+
+    return $indexConfig;
+  }
 
   /**
    * Overrides the elasticsearch_connector bulk delete params.
