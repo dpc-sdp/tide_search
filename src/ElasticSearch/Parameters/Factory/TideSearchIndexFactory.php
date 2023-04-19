@@ -19,8 +19,10 @@ class TideSearchIndexFactory extends IndexFactory {
    * Override the build parameters required to create an index.
    *
    * @param \Drupal\search_api\IndexInterface $index
+   *   The index being processed.
    *
    * @return array
+   *   Return the config for creation of index.
    */
   public static function create(IndexInterface $index) {
     $indexName = IndexFactory::getIndexName($index);
@@ -36,7 +38,7 @@ class TideSearchIndexFactory extends IndexFactory {
                 "type" => "edge_ngram",
                 "min_gram" => "1",
                 "max_gram" => "12"
-              ]
+              ],
             ],
             "analyzer" => [
               "i_prefix" => [
@@ -55,9 +57,9 @@ class TideSearchIndexFactory extends IndexFactory {
                   "asciifolding"
                 ],
                 "tokenizer" => "standard"
-              ]
-            ]
-          ]
+              ],
+            ],
+          ],
         ],
         'mappings' => [
           "properties" => [
@@ -73,8 +75,8 @@ class TideSearchIndexFactory extends IndexFactory {
                   "index_options" => "docs",
                   "analyzer" => "i_prefix",
                   "search_analyzer" => "q_prefix"
-                ]
-              ]
+                ],
+              ],
             ],
             "summary_processed" => [
               "type" => "text",
@@ -88,10 +90,10 @@ class TideSearchIndexFactory extends IndexFactory {
                   "index_options" => "docs",
                   "analyzer" => "i_prefix",
                   "search_analyzer" => "q_prefix"
-                ]
-              ]
-            ]
-          ]
+                ],
+              ],
+            ],
+          ],
         ],
       ],
     ];
