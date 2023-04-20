@@ -33,7 +33,7 @@ class TideSearchIndexFactory extends IndexFactory {
       'body' => [
         'aliases' => [
           $aliasName => [
-            'is_hidden' => false,
+            'is_hidden' => FALSE,
           ],
         ],
         'settings' => [
