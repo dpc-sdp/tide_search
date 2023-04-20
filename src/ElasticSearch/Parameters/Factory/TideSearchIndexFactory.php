@@ -27,7 +27,8 @@ class TideSearchIndexFactory extends IndexFactory {
   public static function create(IndexInterface $index) {
     $indexName = IndexFactory::getIndexName($index);
     $filteredIndexName = str_replace('--', '-', $indexName);
-    $aliasName = 'search-' . str_replace('_', '-', $filteredIndexName) . '-alias';
+    $aliasPrefix = 'search-' . (\Drupal::request()->server->get('SEARCH_HASH') ?: '') . '-';
+    $aliasName = $aliasPrefix . str_replace('_', '-', $filteredIndexName) . '-alias';
     $indexConfig = [
       'index' => $indexName,
       'body' => [

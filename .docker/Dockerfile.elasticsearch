@@ -1,4 +1,4 @@
-FROM amazeeio/elasticsearch:7-latest
+FROM elasticsearch:8.5.3
 ARG ES_TPL
 
 ENV ES_TPL=${ES_TPL:-elasticsearch.yml}
