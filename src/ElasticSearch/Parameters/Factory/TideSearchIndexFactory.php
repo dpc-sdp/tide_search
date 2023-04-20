@@ -26,9 +26,16 @@ class TideSearchIndexFactory extends IndexFactory {
    */
   public static function create(IndexInterface $index) {
     $indexName = IndexFactory::getIndexName($index);
+    $filteredIndexName = str_replace('--', '-', $indexName);
+    $aliasName = str_replace('_', '-', $filteredIndexName) . '-alias';
     $indexConfig = [
       'index' => $indexName,
       'body' => [
+        'aliases' => [
+          $aliasName => [
+            'is_hidden' => false,
+          ],
+        ],
         'settings' => [
           'number_of_shards' => $index->getOption('number_of_shards', 5),
           'number_of_replicas' => $index->getOption('number_of_replicas', 1),
