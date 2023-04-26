@@ -116,6 +116,8 @@ services:
       lagoon.type: redis
 
   elasticsearch:
+    ports:
+      - "9200:9200"
     build:
       context: .
       dockerfile: .docker/Dockerfile.elasticsearch
