@@ -47,9 +47,10 @@ page for [system requirements](https://github.com/dpc-sdp/dev-tools/#prerequisit
 To start local development stack:
 1. Checkout this project
 2. Ensure other projects using our dev stack are stopped
-3. Run `ahoy build`
-4. Use `ahoy login` to gain access to the CMS
-5. Use `ahoy lint && ahoy test-behat` to run CI tests
+3. Run `./dev-tools.sh`
+4. Run `ahoy build`
+5. Use `ahoy login` to gain access to the CMS (or use the one time login link given at end of build)
+6. Use `ahoy lint && ahoy test-behat` to run CI tests
 
 ## Related projects
 - [tide](https://github.com/dpc-sdp/tide)
