@@ -48,6 +48,8 @@ To start local development stack:
 1. Checkout this project
 2. Ensure other projects using our dev stack are stopped
 3. Run `ahoy build`
+4. Use `ahoy login` to gain access to the CMS
+5. Use `ahoy lint && ahoy test-behat` to run CI tests
 
 ## Related projects
 - [tide](https://github.com/dpc-sdp/tide)
