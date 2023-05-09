@@ -14,6 +14,24 @@ Feature: Ensure Search API on Bay Elasticsearch work.
     Then the response status code should be 200
     And the response should contain "elasticsearch_index_drupal_node"
 
+    When I visit "http://elasticsearch:9200/_cat/aliases?v"
+    Then the response status code should be 200
+    And the response should contain "search--elasticsearch-index-drupal-node-alias"
+
+    When I send a GET request to "http://elasticsearch:9200/elasticsearch_index_drupal_node/_mapping"
+    Then the response status code should be 200
+    And the response should be in JSON
+    And the JSON node "elasticsearch_index_drupal_node" should exist
+    And the JSON node "elasticsearch_index_drupal_node.mappings" should exist
+    And the JSON node "elasticsearch_index_drupal_node.mappings.properties" should exist
+    And the JSON node "elasticsearch_index_drupal_node.mappings.properties.summary_processed" should exist
+    And the JSON node "elasticsearch_index_drupal_node.mappings.properties.summary_processed.fields.prefix.search_analyzer" should be equal to "q_prefix"
+    And the JSON node "elasticsearch_index_drupal_node" should exist
+    And the JSON node "elasticsearch_index_drupal_node.mappings" should exist
+    And the JSON node "elasticsearch_index_drupal_node.mappings.properties" should exist
+    And the JSON node "elasticsearch_index_drupal_node.mappings.properties.title" should exist
+    And the JSON node "elasticsearch_index_drupal_node.mappings.properties.title.fields.prefix.analyzer" should be equal to "i_prefix"
+
   @api
   Scenario: Assert that Elasticsearch can index content.
     Given topic terms:

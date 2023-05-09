@@ -1,10 +1,7 @@
-FROM amazeeio/elasticsearch:7-latest
+FROM singledigital/bay-elasticsearch:5.x
 ARG ES_TPL
 
 ENV ES_TPL=${ES_TPL:-elasticsearch.yml}
-
-RUN bin/elasticsearch-plugin install analysis-kuromoji \
-    && bin/elasticsearch-plugin install analysis-icu
 
 COPY .docker/elasticsearch.yml .docker/elasticsearch.* /tmp/elasticsearch/
 
