@@ -1,29 +1,29 @@
 {
-    "name": "dpc-sdp/tide_search",
-    "description": "Search configuration for Tide Drupal 8 distribution",
-    "type": "drupal-module",
-    "license": "GPL-2.0-or-later",
-    "require": {
-        "drupal/search_api": "^1.11",
-        "drupal/elasticsearch_connector": "^7.0",
-        "dpc-sdp/tide_core": "^3.0.0"
+  "description": "Search configuration for Tide Drupal 8 distribution",
+  "extra": {
+    "patches": {
+      "drupal/search_api": {
+        "Provide drush support to index a specific entity - https://www.drupal.org/project/search_api/issues/3016809": "https://www.drupal.org/files/issues/2020-02-08/search_api-index-specific-items-3016809-09.patch"
+      }
     },
-    "repositories": {
-        "drupal": {
-            "type": "composer",
-            "url": "https://packages.drupal.org/8"
-        }
-    },
-    "extra": {
-        "patches": {
-            "drupal/search_api": {
-                "Provide drush support to index a specific entity - https://www.drupal.org/project/search_api/issues/3016809": "https://www.drupal.org/files/issues/2020-02-08/search_api-index-specific-items-3016809-09.patch"
-            }
-        },
-        "drush": {
-            "services": {
-                "drush.services.yml": "^10"
-            }
-        }
+    "drush": {
+      "services": {
+        "drush.services.yml": "^10"
+      }
     }
+  },
+  "license": "GPL-2.0-or-later",
+  "name": "dpc-sdp/tide_search",
+  "repositories": {
+    "drupal": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  },
+  "require": {
+    "dpc-sdp/tide_core": "^3.0.0",
+    "drupal/elasticsearch_connector": "^7.0",
+    "drupal/search_api": "^1.11"
+  },
+  "type": "drupal-module"
 }
