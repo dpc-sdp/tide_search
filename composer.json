@@ -5,6 +5,11 @@
       "services": {
         "drush.services.yml": "^10"
       }
+    },
+    "patches": {
+      "drupal/search_api": {
+        "Provide drush support to index a specific entity - https://www.drupal.org/project/search_api/issues/3016809": "https://www.drupal.org/files/issues/2020-02-08/search_api-index-specific-items-3016809-09.patch"
+      }
     }
   },
   "license": "GPL-2.0-or-later",
