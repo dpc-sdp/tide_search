@@ -1,0 +1,21 @@
+uuid: 38ed3bc2-c959-4e0d-aecf-483053e5c6b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_component
+    - paragraphs.paragraphs_type.search_listing_header_component
+id: paragraph.search_listing_header_component.field_component
+field_name: field_component
+entity_type: paragraph
+bundle: search_listing_header_component
+label: Component
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings: {  }
+field_type: entity_reference

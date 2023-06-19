@@ -1,0 +1,48 @@
+uuid: e5ff3432-034a-4d2d-9211-2532c3638555
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.tide_search_listing.field_featured_image
+    - field.field.node.tide_search_listing.field_header_components
+    - field.field.node.tide_search_listing.field_landing_page_intro_text
+    - field.field.node.tide_search_listing.field_landing_page_summary
+    - field.field.node.tide_search_listing.field_metatags
+    - field.field.node.tide_search_listing.field_node_primary_site
+    - field.field.node.tide_search_listing.field_node_site
+    - field.field.node.tide_search_listing.field_search_configuration
+    - field.field.node.tide_search_listing.field_show_content_rating
+    - field.field.node.tide_search_listing.field_tags
+    - field.field.node.tide_search_listing.field_topic
+    - node.type.tide_search_listing
+  module:
+    - user
+id: node.tide_search_listing.teaser
+targetEntityType: node
+bundle: tide_search_listing
+mode: teaser
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_featured_image: true
+  field_header_components: true
+  field_landing_page_intro_text: true
+  field_landing_page_summary: true
+  field_metatags: true
+  field_node_primary_site: true
+  field_node_site: true
+  field_search_configuration: true
+  field_show_content_rating: true
+  field_tags: true
+  field_topic: true
+  search_api_excerpt: true
