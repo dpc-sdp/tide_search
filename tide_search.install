@@ -114,3 +114,46 @@ function tide_search_update_8003() {
   $tideSearchOperation = new TideSearchOperation();
   $tideSearchOperation->removeTideAlertFromDatasource();
 }
+
+/**
+ * Add Complex Image component.
+ */
+function tide_search_update_8004() {
+  module_load_include('inc', 'tide_core', 'includes/helpers');
+  $config_location = [\Drupal::service('extension.list.module')->getPath('tide_search') . '/config/install'];
+  $configs = [
+    'paragraphs.paragraphs_type.search_listing_header_component.yml',
+    'field.field.paragraph.search_listing_header_component.field_component.yml',
+    'field.field.paragraph.search_listing_header_component.field_description.yml',
+    'field.field.paragraph.search_listing_header_component.field_header_configuration.yml',
+    'field.field.paragraph.search_listing_header_component.field_title.yml',
+    'node.type.tide_search_listing.yml',
+    'core.entity_form_display.node.tide_search_listing.default.yml',
+    'core.entity_form_display.paragraph.search_listing_header_component.default.yml',
+    'core.entity_view_display.node.tide_search_listing.default.yml',
+    'core.entity_view_display.node.tide_search_listing.teaser.yml',
+    'core.entity_view_display.paragraph.search_listing_header_component.default.yml',
+    'field.field.node.tide_search_listing.field_featured_image.yml',
+    'field.field.node.tide_search_listing.field_header_components.yml',
+    'field.field.node.tide_search_listing.field_landing_page_intro_text.yml',
+    'field.field.node.tide_search_listing.field_landing_page_summary.yml',
+    'field.field.node.tide_search_listing.field_metatags.yml',
+    'field.field.node.tide_search_listing.field_node_primary_site.yml',
+    'field.field.node.tide_search_listing.field_node_site.yml',
+    'field.field.node.tide_search_listing.field_search_configuration.yml',
+    'field.field.node.tide_search_listing.field_show_content_rating.yml',
+    'field.field.node.tide_search_listing.field_tags.yml',
+    'field.field.node.tide_search_listing.field_topic.yml',
+    'field.storage.node.field_header_components.yml',
+    'field.storage.node.field_search_configuration.yml',
+    'field.storage.paragraph.field_component.yml',
+    'field.storage.paragraph.field_description.yml',
+    'field.storage.paragraph.field_header_configuration.yml',
+    'field.storage.paragraph.field_title.yml',
+    'simple_sitemap.bundle_settings.default.node.tide_search_listing.yml'
+  ];
+
+  foreach ($configs as $config) {
+    _tide_import_single_config($config, $config_location);
+  }
+}
