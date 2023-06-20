@@ -116,7 +116,7 @@ function tide_search_update_8003() {
 }
 
 /**
- * Add Complex Image component.
+ * Add content type for search listing.
  */
 function tide_search_update_8004() {
   $config_location = [\Drupal::service('extension.list.module')->getPath('tide_search') . '/config/install'];
