@@ -8,6 +8,7 @@ dependencies:
   - elasticsearch_connector:elasticsearch_connector
   - dpc-sdp:tide_core
   - dpc-sdp:tide_landing_page
+  - dpc-sdp:tide_content_collection
 themes:
   - claro
 config_devel:
