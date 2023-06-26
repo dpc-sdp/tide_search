@@ -29,6 +29,7 @@ class TideSearchIndexFactory extends IndexFactory {
     $filteredIndexName = str_replace('--', '-', $indexName);
     $aliasPrefix = 'search-' . (\Drupal::request()->server->get('SEARCH_HASH') ?: '') . '-';
     $aliasName = $aliasPrefix . str_replace('_', '-', $filteredIndexName) . '-alias';
+
     $indexConfig = [
       'index' => $indexName,
       'body' => [
@@ -111,7 +112,6 @@ class TideSearchIndexFactory extends IndexFactory {
     $prepareIndexEvent = new PrepareIndexEvent($indexConfig, $indexName);
     $event = $dispatcher->dispatch($prepareIndexEvent, PrepareIndexEvent::PREPARE_INDEX);
     $indexConfig = $event->getIndexConfig();
-
     return $indexConfig;
   }
 
@@ -150,6 +150,34 @@ class TideSearchIndexFactory extends IndexFactory {
     }
 
     return $params;
+  }
+
+  /**
+   * Build parameters required to create an index mapping.
+   *
+   * @todo We need also:
+   * $params['index'] - (Required)
+   * ['type'] - The name of the document type
+   * ['timeout'] - (time) Explicit operation timeout.
+   *
+   * @param \Drupal\search_api\IndexInterface $index
+   *   Index object.
+   *
+   * @return array
+   *   Parameters required to create an index mapping.
+   */
+  public static function mapping(IndexInterface $index) {
+    $mapping = parent::mapping($index);
+    $filtered = [];
+    foreach ($mapping['body']['properties'] as $property_key => $property) {
+      if (isset($property['boost'])) {
+        unset($property['boost']);
+      }
+      $filtered[$property_key] = $property;
+    };
+    $mapping['body']['properties'] = $filtered;
+
+    return $mapping;
   }
 
 }
