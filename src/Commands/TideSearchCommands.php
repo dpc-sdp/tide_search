@@ -2,8 +2,8 @@
 
 namespace Drupal\tide_search\Commands;
 
-use Drush\Commands\DrushCommands;
 use Drupal\search_api\Utility\CommandHelper;
+use Drush\Commands\DrushCommands;
 
 /**
  * A Drush commandfile.

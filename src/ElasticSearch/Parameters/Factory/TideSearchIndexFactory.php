@@ -155,7 +155,7 @@ class TideSearchIndexFactory extends IndexFactory {
   /**
    * Build parameters required to create an index mapping.
    *
-   * TODO: We need also:
+   * @todo We need also:
    * $params['index'] - (Required)
    * ['type'] - The name of the document type
    * ['timeout'] - (time) Explicit operation timeout.
@@ -169,7 +169,7 @@ class TideSearchIndexFactory extends IndexFactory {
   public static function mapping(IndexInterface $index) {
     $mapping = parent::mapping($index);
     $filtered = [];
-    foreach($mapping['body']['properties'] as $property_key => $property) {
+    foreach ($mapping['body']['properties'] as $property_key => $property) {
       if (isset($property['boost'])) {
         unset($property['boost']);
       }
