@@ -120,6 +120,10 @@ function tide_search_update_8003() {
  * Add new content type for Search Listing.
  */
 function tide_search_update_8004() {
+  \Drupal::service('module_installer')->install([
+    'tide_content_collection',
+  ], TRUE);
+
   $config_location = [\Drupal::service('extension.list.module')->getPath('tide_search') . '/config/install'];
   $configs = [
     'paragraphs.paragraphs_type.search_listing_header_component' => 'paragraphs_type',
