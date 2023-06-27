@@ -9,6 +9,7 @@ dependencies:
   - dpc-sdp:tide_site
   - dpc-sdp:tide_core
   - dpc-sdp:tide_landing_page
+  - dpc-sdp:tide_api
   - dpc-sdp:tide_content_collection
 themes:
   - claro
