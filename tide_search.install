@@ -124,7 +124,8 @@ function tide_search_update_8004() {
     'tide_content_collection',
   ], TRUE);
 
-  $config_location = [\Drupal::service('extension.list.module')->getPath('tide_search') . '/config/install'];
+  $config_location = [\Drupal::service('extension.list.module')->getPath('tide_search') . '/config/optional'];
+  
   $configs = [
     'paragraphs.paragraphs_type.search_listing_header_component' => 'paragraphs_type',
     'field.storage.paragraph.field_component' => 'field_storage_config',
