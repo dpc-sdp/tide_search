@@ -21,10 +21,7 @@
     }
   },
   "require": {
-    "dpc-sdp/tide_core": "^3.0.0",
-    "dpc-sdp/tide_landing_page": "^3.0.14",
-    "dpc-sdp/tide_api": "^3.0.11",
-    "dpc-sdp/tide_site": "^3.0.15",
+    "dpc-sdp/tide_core": "dev-reference",
     "drupal/elasticsearch_connector": "^7.0",
     "drupal/search_api": "^1.11"
   },
