@@ -6,8 +6,8 @@
  */
 
 use Drupal\search_api\Item\Field;
-use Drupal\user\Entity\Role;
 use Drupal\tide_search\TideSearchOperation;
+use Drupal\user\Entity\Role;
 
 /**
  * Implements hook_install().
@@ -125,7 +125,7 @@ function tide_search_update_8004() {
   ], TRUE);
 
   $config_location = [\Drupal::service('extension.list.module')->getPath('tide_search') . '/config/optional'];
-  
+
   $configs = [
     'paragraphs.paragraphs_type.search_listing_header_component' => 'paragraphs_type',
     'field.storage.paragraph.field_component' => 'field_storage_config',
@@ -166,7 +166,7 @@ function tide_search_update_8004() {
     }
   }
 
-  // Import form display
+  // Import form display.
   $config_id = 'core.entity_form_display.node.tide_search_listing.default';
   $config = \Drupal::configFactory()->getEditable($config_id);
   $config_read = _tide_read_config($config_id, $config_location, FALSE);
@@ -176,7 +176,7 @@ function tide_search_update_8004() {
   error_log(" tide_search_update_8004 - importing form config");
   $config->save();
 
-  // Add permissions for site admin
+  // Add permissions for site admin.
   $role = Role::load('site_admin');
   if ($role) {
     error_log(" tide_search_update_8004 - adding permissions to site admin");
@@ -188,7 +188,7 @@ function tide_search_update_8004() {
     $role->save();
   }
 
-  // Add workflows
+  // Add workflows.
   error_log(" tide_search_update_8004 - adding workflows");
   $config = \Drupal::configFactory()->getEditable('workflows.workflow.editorial');
   $dependencies = $config->get('dependencies.config');
