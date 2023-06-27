@@ -10,6 +10,7 @@ dependencies:
   module:
     - text
     - tide_content_collection
+    - tide_site
 id: paragraph.search_listing_header_component.default
 targetEntityType: paragraph
 bundle: search_listing_header_component

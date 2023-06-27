@@ -17,6 +17,7 @@ dependencies:
     - node.type.tide_search_listing
   module:
     - user
+    - tide_site
 id: node.tide_search_listing.teaser
 targetEntityType: node
 bundle: tide_search_listing
