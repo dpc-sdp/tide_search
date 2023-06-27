@@ -8,8 +8,6 @@ dependencies:
     - field.field.node.tide_search_listing.field_landing_page_intro_text
     - field.field.node.tide_search_listing.field_landing_page_summary
     - field.field.node.tide_search_listing.field_metatags
-    - field.field.node.tide_search_listing.field_node_primary_site
-    - field.field.node.tide_search_listing.field_node_site
     - field.field.node.tide_search_listing.field_search_configuration
     - field.field.node.tide_search_listing.field_show_content_rating
     - field.field.node.tide_search_listing.field_tags
