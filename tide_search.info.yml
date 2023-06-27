@@ -7,9 +7,3 @@ dependencies:
   - search_api:search_api
   - elasticsearch_connector:elasticsearch_connector
   - dpc-sdp:tide_core
-  - dpc-sdp:tide_api
-  - dpc-sdp:tide_site
-  - dpc-sdp:tide_landing_page
-  - tide_api:tide_content_collection
-themes:
-  - claro
