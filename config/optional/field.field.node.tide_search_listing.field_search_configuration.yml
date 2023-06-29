@@ -12,7 +12,7 @@ entity_type: node
 bundle: tide_search_listing
 label: 'Search Configuration'
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
