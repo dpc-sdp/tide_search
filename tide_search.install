@@ -129,9 +129,7 @@ function tide_search_update_8004() {
   $configs = [
     'paragraphs.paragraphs_type.search_listing_header_component' => 'paragraphs_type',
     'field.storage.paragraph.field_component' => 'field_storage_config',
-    //'field.storage.paragraph.field_description' => 'field_storage_config',
     'field.storage.paragraph.field_header_configuration' => 'field_storage_config',
-    //'field.storage.paragraph.field_title' => 'field_storage_config',
     'field.field.paragraph.search_listing_header_component.field_component' => 'field_config',
     'field.field.paragraph.search_listing_header_component.field_description' => 'field_config',
     'field.field.paragraph.search_listing_header_component.field_header_configuration' => 'field_config',
