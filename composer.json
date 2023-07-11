@@ -21,9 +21,19 @@
     }
   },
   "require": {
-    "dpc-sdp/tide_core": "dev-reference",
+    "dpc-sdp/tide_core": "dev-reference | ^3.0.0",
     "drupal/elasticsearch_connector": "^7.0",
     "drupal/search_api": "^1.11"
   },
-  "type": "drupal-module"
+  "type": "drupal-module",
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "php-http/discovery": true,
+      "drupal/console-extend-plugin": true,
+      "cweagans/composer-patches": true,
+      "drupal/core-composer-scaffold": true
+    }
+  }
 }
