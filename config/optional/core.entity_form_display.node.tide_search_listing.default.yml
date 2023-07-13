@@ -22,16 +22,13 @@ dependencies:
     - paragraphs
     - path
     - tide_content_collection
-    - tide_site
 third_party_settings:
   field_group:
-    group_header_section:
+    group_search_listing_headers:
       children:
-        - title
-        - field_landing_page_summary
-        - field_landing_page_intro_text
-        - field_header_components
-      label: 'Header Section'
+        - group_search_listing_header
+        - group_search_listing_customhead
+      label: Headers
       region: content
       parent_name: ''
       weight: 0
@@ -42,20 +39,38 @@ third_party_settings:
         id: ''
         direction: horizontal
         width_breakpoint: 640
-    group_content_section:
+    group_search_listing_header:
       children:
-        - field_search_configuration
-      label: 'Content Section'
+        - title
+        - field_landing_page_intro_text
+        - field_landing_page_summary
+      label: Header
       region: content
-      parent_name: ''
-      weight: 2
-      format_type: tabs
+      parent_name: group_search_listing_headers
+      weight: 3
+      format_type: tab
       format_settings:
         classes: ''
         show_empty_fields: false
         id: ''
-        direction: horizontal
-        width_breakpoint: 640
+        formatter: open
+        description: ''
+        required_fields: true
+    group_search_listing_customhead:
+      children:
+        - field_header_components
+      label: 'Custom Header'
+      region: hidden
+      parent_name: group_search_listing_headers
+      weight: 4
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
 id: node.tide_search_listing.default
 targetEntityType: node
 bundle: tide_search_listing
@@ -63,7 +78,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 7
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -79,7 +94,7 @@ content:
     third_party_settings: {  }
   field_header_components:
     type: paragraphs
-    weight: 4
+    weight: 2
     region: content
     settings:
       title: Paragraph
@@ -98,7 +113,7 @@ content:
     third_party_settings: {  }
   field_landing_page_intro_text:
     type: string_textarea
-    weight: 3
+    weight: 4
     region: content
     settings:
       rows: 5
@@ -106,7 +121,7 @@ content:
     third_party_settings: {  }
   field_landing_page_summary:
     type: string_textarea
-    weight: 2
+    weight: 5
     region: content
     settings:
       rows: 5
@@ -114,7 +129,7 @@ content:
     third_party_settings: {  }
   field_metatags:
     type: metatag_firehose
-    weight: 16
+    weight: 17
     region: content
     settings:
       sidebar: true
@@ -122,21 +137,21 @@ content:
     third_party_settings: {  }
   field_node_primary_site:
     type: options_buttons
-    weight: 18
+    weight: 19
     region: content
     settings: {  }
     third_party_settings: {  }
     field_name: field_node_primary_site
   field_node_site:
     type: options_buttons
-    weight: 17
+    weight: 18
     region: content
     settings: {  }
     third_party_settings: {  }
     field_name: field_node_site
   field_search_configuration:
     type: content_collection_configuration_raw
-    weight: 26
+    weight: 4
     region: content
     settings:
       schema_validation: false
@@ -145,14 +160,14 @@ content:
     third_party_settings: {  }
   field_show_content_rating:
     type: boolean_checkbox
-    weight: 4
+    weight: 7
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_tags:
     type: entity_reference_autocomplete
-    weight: 15
+    weight: 16
     region: content
     settings:
       match_operator: CONTAINS
@@ -162,7 +177,7 @@ content:
     third_party_settings: {  }
   field_topic:
     type: entity_reference_autocomplete
-    weight: 3
+    weight: 5
     region: content
     settings:
       match_operator: CONTAINS
@@ -172,45 +187,45 @@ content:
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 14
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 9
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 10
+    weight: 6
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   simple_sitemap:
-    weight: 13
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 12
+    weight: 13
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 8
+    weight: 10
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 1
+    weight: 2
     region: content
     settings:
       size: 60
@@ -218,7 +233,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 8
     region: content
     settings:
       match_operator: CONTAINS
@@ -227,7 +242,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 11
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }

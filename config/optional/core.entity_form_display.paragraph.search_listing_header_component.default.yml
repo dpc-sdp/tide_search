@@ -3,14 +3,10 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.search_listing_header_component.field_component
-    - field.field.paragraph.search_listing_header_component.field_description
     - field.field.paragraph.search_listing_header_component.field_header_configuration
-    - field.field.paragraph.search_listing_header_component.field_title
     - paragraphs.paragraphs_type.search_listing_header_component
   module:
-    - text
     - tide_content_collection
-    - tide_site
 id: paragraph.search_listing_header_component.default
 targetEntityType: paragraph
 bundle: search_listing_header_component
@@ -26,14 +22,6 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_description:
-    type: text_textarea
-    weight: 2
-    region: content
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
   field_header_configuration:
     type: content_collection_configuration_raw
     weight: 3
@@ -41,14 +29,6 @@ content:
     settings:
       schema_validation: false
       rows: '5'
-      placeholder: ''
-    third_party_settings: {  }
-  field_title:
-    type: string_textfield
-    weight: 0
-    region: content
-    settings:
-      size: 60
       placeholder: ''
     third_party_settings: {  }
 hidden:
