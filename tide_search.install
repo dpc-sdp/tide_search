@@ -6,6 +6,7 @@
  */
 
 use Drupal\search_api\Item\Field;
+use Drupal\taxonomy\Entity\Term;
 use Drupal\tide_search\TideSearchOperation;
 use Drupal\user\Entity\Role;
 
@@ -127,7 +128,7 @@ function tide_search_update_8004() {
   $config_location = [\Drupal::service('extension.list.module')->getPath('tide_search') . '/config/optional'];
 
   $configs = [
-    'taxonomy.vocabulary.search_listing_custom_header_com' => 'taxonomy',
+    'taxonomy.vocabulary.search_listing_custom_header_com' => 'taxonomy_vocabulary',
     'paragraphs.paragraphs_type.search_listing_header_component' => 'paragraphs_type',
     'field.storage.paragraph.field_component' => 'field_storage_config',
     'field.storage.paragraph.field_header_configuration' => 'field_storage_config',
@@ -150,6 +151,12 @@ function tide_search_update_8004() {
     'core.entity_view_display.node.tide_search_listing.teaser' => 'entity_view_display',
     'core.entity_view_display.paragraph.search_listing_header_component.default' => 'entity_view_display',
   ];
+
+  Term::create([
+    'name' => 'Progress Bar',
+    'vid' => 'search_listing_custom_header_com',
+    'parent' => [],
+  ])->save();
 
   module_load_include('inc', 'tide_core', 'includes/helpers');
   foreach ($configs as $config => $type) {
