@@ -14,14 +14,9 @@ dependencies:
     - field.field.node.tide_search_listing.field_tags
     - field.field.node.tide_search_listing.field_topic
     - node.type.tide_search_listing
-    - workflows.workflow.editorial
   module:
     - content_moderation
-    - field_group
-    - metatag
-    - paragraphs
     - path
-    - tide_content_collection
 third_party_settings:
   field_group:
     group_search_listing_headers:

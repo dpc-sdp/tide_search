@@ -3,12 +3,9 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.search_listing_header_component.field_component
-    - field.field.paragraph.search_listing_header_component.field_description
     - field.field.paragraph.search_listing_header_component.field_header_configuration
-    - field.field.paragraph.search_listing_header_component.field_title
     - paragraphs.paragraphs_type.search_listing_header_component
   module:
-    - text
     - tide_content_collection
 id: paragraph.search_listing_header_component.default
 targetEntityType: paragraph

@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.search_listing_header_component.field_header_configuration
     - paragraphs.paragraphs_type.search_listing_header_component
   module:
+    - select2
     - tide_content_collection
 id: paragraph.search_listing_header_component.default
 targetEntityType: paragraph
@@ -13,14 +14,14 @@ bundle: search_listing_header_component
 mode: default
 content:
   field_component:
-    type: entity_reference_autocomplete
+    type: select2_entity_reference
     weight: 1
     region: content
     settings:
+      width: 100%
+      autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
   field_header_configuration:
     type: content_collection_configuration_raw
