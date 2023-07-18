@@ -6,14 +6,19 @@ dependencies:
     - field.field.node.tide_search_listing.field_header_components
     - field.field.node.tide_search_listing.field_landing_page_intro_text
     - field.field.node.tide_search_listing.field_landing_page_summary
+    - field.field.node.tide_search_listing.field_listing_query_config
+    - field.field.node.tide_search_listing.field_listing_results_per_page
     - field.field.node.tide_search_listing.field_metatags
     - field.field.node.tide_search_listing.field_node_primary_site
     - field.field.node.tide_search_listing.field_node_site
     - field.field.node.tide_search_listing.field_search_configuration
+    - field.field.node.tide_search_listing.field_search_input_placeholder
+    - field.field.node.tide_search_listing.field_search_submit_label
     - field.field.node.tide_search_listing.field_show_content_rating
     - field.field.node.tide_search_listing.field_tags
     - field.field.node.tide_search_listing.field_topic
     - node.type.tide_search_listing
+    - workflows.workflow.editorial
   module:
     - content_moderation
     - field_group
@@ -65,9 +70,41 @@ third_party_settings:
       format_type: tab
       format_settings:
         classes: ''
-        show_empty_fields: false
+        show_empty_fields: true
         id: ''
         formatter: closed
+        description: ''
+        required_fields: true
+    group_listing_configuration_tabs:
+      children:
+        - group_listing_configuration_tab
+      label: 'Configuration Tabs'
+      region: content
+      parent_name: ''
+      weight: 2
+      format_type: tabs
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        direction: horizontal
+        width_breakpoint: 640
+    group_listing_configuration_tab:
+      children:
+        - field_listing_query_config
+        - field_search_input_placeholder
+        - field_search_submit_label
+        - field_listing_results_per_page
+      label: 'Listing Configuration'
+      region: hidden
+      parent_name: group_listing_configuration_tabs
+      weight: 3
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: true
+        id: ''
+        formatter: open
         description: ''
         required_fields: true
 id: node.tide_search_listing.default
@@ -127,6 +164,22 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+  field_listing_query_config:
+    type: content_collection_configuration_raw
+    weight: 7
+    region: content
+    settings:
+      schema_validation: false
+      rows: '5'
+      placeholder: ''
+    third_party_settings: {  }
+  field_listing_results_per_page:
+    type: number
+    weight: 10
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
   field_metatags:
     type: metatag_firehose
     weight: 17
@@ -151,11 +204,27 @@ content:
     field_name: field_node_site
   field_search_configuration:
     type: content_collection_configuration_raw
-    weight: 4
+    weight: 3
     region: content
     settings:
       schema_validation: false
       rows: '5'
+      placeholder: ''
+    third_party_settings: {  }
+  field_search_input_placeholder:
+    type: string_textfield
+    weight: 8
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_search_submit_label:
+    type: string_textfield
+    weight: 9
+    region: content
+    settings:
+      size: 60
       placeholder: ''
     third_party_settings: {  }
   field_show_content_rating:
