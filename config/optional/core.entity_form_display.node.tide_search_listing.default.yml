@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.tide_search_listing.field_header_components
     - field.field.node.tide_search_listing.field_landing_page_intro_text
     - field.field.node.tide_search_listing.field_landing_page_summary
+    - field.field.node.tide_search_listing.field_listing_global_filters
     - field.field.node.tide_search_listing.field_listing_query_config
     - field.field.node.tide_search_listing.field_listing_results_per_page
     - field.field.node.tide_search_listing.field_metatags
@@ -78,6 +79,7 @@ third_party_settings:
     group_listing_configuration_tabs:
       children:
         - group_listing_configuration_tab
+        - group_global_filters_tab
       label: 'Configuration Tabs'
       region: content
       parent_name: ''
@@ -105,6 +107,21 @@ third_party_settings:
         show_empty_fields: true
         id: ''
         formatter: open
+        description: ''
+        required_fields: true
+    group_global_filters_tab:
+      children:
+        - field_listing_global_filters
+      label: 'Global filters'
+      region: hidden
+      parent_name: group_listing_configuration_tabs
+      weight: 3
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: closed
         description: ''
         required_fields: true
 id: node.tide_search_listing.default
@@ -164,6 +181,26 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+  field_listing_global_filters:
+    type: paragraphs
+    weight: 3
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: modal
+      form_display_mode: default
+      default_paragraph_type: _none
+      default_paragraph_count: 1
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
   field_listing_query_config:
     type: content_collection_configuration_raw
     weight: 7
@@ -204,7 +241,7 @@ content:
     field_name: field_node_site
   field_search_configuration:
     type: content_collection_configuration_raw
-    weight: 3
+    weight: 4
     region: content
     settings:
       schema_validation: false
