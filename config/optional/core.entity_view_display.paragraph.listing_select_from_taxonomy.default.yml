@@ -1,0 +1,39 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.listing_select_from_taxonomy.field_listing_selected_taxonomy
+    - field.field.paragraph.listing_select_from_taxonomy.field_user_filter_input_label
+    - field.field.paragraph.listing_select_from_taxonomy.field_user_filter_placeholder
+    - paragraphs.paragraphs_type.listing_select_from_taxonomy
+id: paragraph.listing_select_from_taxonomy.default
+targetEntityType: paragraph
+bundle: listing_select_from_taxonomy
+mode: default
+content:
+  field_listing_selected_taxonomy:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_user_filter_input_label:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_user_filter_placeholder:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  search_api_excerpt: true

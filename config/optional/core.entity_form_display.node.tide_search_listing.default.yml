@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.tide_search_listing.field_listing_global_filters
     - field.field.node.tide_search_listing.field_listing_query_config
     - field.field.node.tide_search_listing.field_listing_results_per_page
+    - field.field.node.tide_search_listing.field_listing_user_filters
     - field.field.node.tide_search_listing.field_metatags
     - field.field.node.tide_search_listing.field_node_primary_site
     - field.field.node.tide_search_listing.field_node_site
@@ -41,7 +42,7 @@ third_party_settings:
       format_settings:
         classes: ''
         show_empty_fields: false
-        id: ''
+        id: node-form-group-header-section
         direction: horizontal
         width_breakpoint: 640
     group_search_listing_header:
@@ -58,7 +59,7 @@ third_party_settings:
         classes: ''
         show_empty_fields: false
         id: ''
-        formatter: open
+        formatter: closed
         description: ''
         required_fields: true
     group_search_listing_customhead:
@@ -71,13 +72,14 @@ third_party_settings:
       format_type: tab
       format_settings:
         classes: ''
-        show_empty_fields: true
+        show_empty_fields: false
         id: ''
         formatter: closed
         description: ''
         required_fields: true
     group_listing_configuration_tabs:
       children:
+        - group_user_filter_tab
         - group_listing_configuration_tab
         - group_global_filters_tab
       label: 'Configuration Tabs'
@@ -100,13 +102,13 @@ third_party_settings:
       label: 'Listing Configuration'
       region: hidden
       parent_name: group_listing_configuration_tabs
-      weight: 3
+      weight: 4
       format_type: tab
       format_settings:
         classes: ''
-        show_empty_fields: true
+        show_empty_fields: false
         id: ''
-        formatter: open
+        formatter: closed
         description: ''
         required_fields: true
     group_global_filters_tab:
@@ -115,11 +117,26 @@ third_party_settings:
       label: 'Global filters'
       region: hidden
       parent_name: group_listing_configuration_tabs
-      weight: 3
+      weight: 8
       format_type: tab
       format_settings:
         classes: ''
         show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_user_filter_tab:
+      children:
+        - field_listing_user_filters
+      label: 'User Filter'
+      region: content
+      parent_name: group_listing_configuration_tabs
+      weight: 9
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: true
         id: ''
         formatter: closed
         description: ''
@@ -147,7 +164,7 @@ content:
     third_party_settings: {  }
   field_header_components:
     type: paragraphs
-    weight: 2
+    weight: 5
     region: content
     settings:
       title: Paragraph
@@ -183,7 +200,7 @@ content:
     third_party_settings: {  }
   field_listing_global_filters:
     type: paragraphs
-    weight: 3
+    weight: 9
     region: content
     settings:
       title: Paragraph
@@ -203,7 +220,7 @@ content:
     third_party_settings: {  }
   field_listing_query_config:
     type: content_collection_configuration_raw
-    weight: 7
+    weight: 11
     region: content
     settings:
       schema_validation: false
@@ -212,10 +229,30 @@ content:
     third_party_settings: {  }
   field_listing_results_per_page:
     type: number
-    weight: 10
+    weight: 14
     region: content
     settings:
       placeholder: ''
+    third_party_settings: {  }
+  field_listing_user_filters:
+    type: paragraphs
+    weight: 26
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: modal
+      form_display_mode: default
+      default_paragraph_type: _none
+      default_paragraph_count: null
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
     third_party_settings: {  }
   field_metatags:
     type: metatag_firehose
@@ -241,7 +278,7 @@ content:
     field_name: field_node_site
   field_search_configuration:
     type: content_collection_configuration_raw
-    weight: 4
+    weight: 3
     region: content
     settings:
       schema_validation: false
@@ -250,7 +287,7 @@ content:
     third_party_settings: {  }
   field_search_input_placeholder:
     type: string_textfield
-    weight: 8
+    weight: 12
     region: content
     settings:
       size: 60
@@ -258,7 +295,7 @@ content:
     third_party_settings: {  }
   field_search_submit_label:
     type: string_textfield
-    weight: 9
+    weight: 13
     region: content
     settings:
       size: 60
@@ -266,7 +303,7 @@ content:
     third_party_settings: {  }
   field_show_content_rating:
     type: boolean_checkbox
-    weight: 7
+    weight: 6
     region: content
     settings:
       display_label: true
@@ -283,7 +320,7 @@ content:
     third_party_settings: {  }
   field_topic:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 4
     region: content
     settings:
       match_operator: CONTAINS
@@ -305,7 +342,7 @@ content:
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 6
+    weight: 5
     region: content
     settings:
       display_label: true

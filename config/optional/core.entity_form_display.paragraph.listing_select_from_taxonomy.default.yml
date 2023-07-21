@@ -1,0 +1,44 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.listing_select_from_taxonomy.field_listing_selected_taxonomy
+    - field.field.paragraph.listing_select_from_taxonomy.field_user_filter_input_label
+    - field.field.paragraph.listing_select_from_taxonomy.field_user_filter_placeholder
+    - paragraphs.paragraphs_type.listing_select_from_taxonomy
+  module:
+    - select2
+id: paragraph.listing_select_from_taxonomy.default
+targetEntityType: paragraph
+bundle: listing_select_from_taxonomy
+mode: default
+content:
+  field_listing_selected_taxonomy:
+    type: select2_entity_reference
+    weight: 0
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_user_filter_input_label:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_user_filter_placeholder:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
