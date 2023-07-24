@@ -129,6 +129,8 @@ function tide_search_update_8004() {
 
   $configs = [
     'taxonomy.vocabulary.search_listing_custom_header_com' => 'taxonomy_vocabulary',
+    'taxonomy.vocabulary.listing_layout_comp_taxonomy' => 'taxonomy_vocabulary',
+    'taxonomy.vocabulary.listing_results_comp_taxonomy' => 'taxonomy_vocabulary',
     'paragraphs.paragraphs_type.search_listing_header_component' => 'paragraphs_type',
     'paragraphs.paragraphs_type.listing_content_type' => 'paragraphs_type',
     'paragraphs.paragraphs_type.listing_custom_filter' => 'paragraphs_type',
@@ -162,6 +164,9 @@ function tide_search_update_8004() {
     'field.storage.node.field_search_submit_label' => 'field_storage_config',
     'field.storage.node.field_listing_results_per_page' => 'field_storage_config',
     'field.storage.node.field_listing_user_filters' => 'field_storage_config',
+    'field.storage.node.field_listing_layout_component' => 'field_storage_config',
+    'field.storage.node.field_listing_results_component' => 'field_storage_config',
+    'field.storage.node.field_listing_results_config' => 'field_storage_config',
     'field.field.node.tide_search_listing.field_featured_image' => 'field_config',
     'field.field.node.tide_search_listing.field_header_components' => 'field_config',
     'field.field.node.tide_search_listing.field_landing_page_intro_text' => 'field_config',
@@ -177,6 +182,9 @@ function tide_search_update_8004() {
     'field.field.node.tide_search_listing.field_search_submit_label' => 'field_config',
     'field.field.node.tide_search_listing.field_listing_results_per_page' => 'field_config',
     'field.field.node.tide_search_listing.field_listing_user_filters' => 'field_config',
+    'field.field.node.tide_search_listing.field_listing_layout_component' => 'field_config',
+    'field.field.node.tide_search_listing.field_listing_results_component' => 'field_config',
+    'field.field.node.tide_search_listing.field_listing_results_config' => 'field_config',
     'core.entity_form_display.paragraph.search_listing_header_component.default' => 'entity_form_display',
     'core.entity_form_display.paragraph.listing_content_type.default' => 'entity_form_display',
     'core.entity_form_display.paragraph.listing_custom_filter.default' => 'entity_form_display',
@@ -198,6 +206,24 @@ function tide_search_update_8004() {
     'vid' => 'search_listing_custom_header_com',
     'parent' => [],
   ])->save();
+
+  $layout_terms = ['Grid', 'List', 'Table'];
+  foreach ($layout_terms as $term) {
+    Term::create([
+      'name' => $term,
+      'vid' => 'listing_layout_comp_taxonomy',
+      'parent' => [],
+    ])->save();
+  }
+
+  $results_terms = ['Card', 'Card (Profile)', 'List item', 'List item (Grants)'];
+  foreach ($results_terms as $term) {
+    Term::create([
+      'name' => $term,
+      'vid' => 'listing_results_comp_taxonomy',
+      'parent' => [],
+    ])->save();
+  }
 
   module_load_include('inc', 'tide_core', 'includes/helpers');
   foreach ($configs as $config => $type) {
