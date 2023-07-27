@@ -102,8 +102,6 @@ class TideSearchOperation {
       'core.entity_view_display.paragraph.listing_site.default' => 'entity_view_display',
       'core.entity_view_display.paragraph.listing_select_from_taxonomy.default' => 'entity_view_display',
       'core.entity_view_display.paragraph.listing_user_custom_filter.default' => 'entity_view_display',
-      'jsonapi_extras.jsonapi_resource_config.taxonomy_vocabulary--taxonomy_vocabulary' => 'jsonapi_resource_config',
-      'jsonapi_extras.jsonapi_resource_config.node_type--node_type' => 'jsonapi_resource_config',
     ];
 
     module_load_include('inc', 'tide_core', 'includes/helpers');
@@ -147,6 +145,8 @@ class TideSearchOperation {
       $role->grantPermission('view scheduled transitions node tide_search_listing');
       $role->save();
     }
+    Role::load('anonymous')->grantPermission('access taxonomy overview')->save();
+    Role::load('authenticated')->grantPermission('access taxonomy overview')->save();
   }
 
   /**
@@ -175,6 +175,17 @@ class TideSearchOperation {
         'parent' => [],
       ])->save();
     }
+  }
+
+  public function allowJsonApiResources() {
+    $config_factory = \Drupal::configFactory();
+    $config = $config_factory->getEditable('jsonapi_extras.jsonapi_resource_config.node_type--node_type');
+    $config->set('disabled', FALSE);
+    $config->save();
+
+    $config = $config_factory->getEditable('jsonapi_extras.jsonapi_resource_config.taxonomy_vocabulary--taxonomy_vocabulary');
+    $config->set('disabled', FALSE);
+    $config->save();
   }
 
 }
