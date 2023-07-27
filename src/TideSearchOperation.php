@@ -102,6 +102,8 @@ class TideSearchOperation {
       'core.entity_view_display.paragraph.listing_site.default' => 'entity_view_display',
       'core.entity_view_display.paragraph.listing_select_from_taxonomy.default' => 'entity_view_display',
       'core.entity_view_display.paragraph.listing_user_custom_filter.default' => 'entity_view_display',
+      'jsonapi_extras.jsonapi_resource_config.taxonomy_vocabulary--taxonomy_vocabulary' => 'jsonapi_resource_config',
+      'jsonapi_extras.jsonapi_resource_config.node_type--node_type' => 'jsonapi_resource_config',
     ];
 
     module_load_include('inc', 'tide_core', 'includes/helpers');
