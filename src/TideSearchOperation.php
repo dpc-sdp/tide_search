@@ -178,7 +178,7 @@ class TideSearchOperation {
   }
 
   /**
-   * Ensure that node type and taxonomy vocab can be retrieved to allow this content type to work as expected.
+   * Allow node type and taxonomy vocab over JSONAPI.
    */
   public function allowJsonApiResources() {
     $config_factory = \Drupal::configFactory();
