@@ -139,4 +139,5 @@ function tide_search_update_8004() {
     'listing_results_comp_taxonomy',
     ['Card', 'Card (Profile)', 'List item', 'List item (Grants)']
   );
+  $tideSearchOperation->addSearchableFieldsTerms();
 }

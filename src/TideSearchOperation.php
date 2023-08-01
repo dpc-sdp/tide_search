@@ -185,6 +185,28 @@ class TideSearchOperation {
   }
 
   /**
+   * Add supplied terms to searchable fields.
+   */
+  public function addSearchableFieldsTerms() {
+    $terms = [
+      [
+        'name' => 'Audience (Grants)',
+        'field_elasticsearch_field' => 'field_audience_name',
+        'field_taxonomy_machine_name' => 'audience',
+      ],
+    ];
+    foreach ($terms as $term) {
+      Term::create([
+        'name' => $term['name'],
+        'vid' => '',
+        'field_elasticsearch_field' => $term['field_elasticsearch_field'],
+        'field_taxonomy_machine_name' => $term['field_taxonomy_machine_name'],
+        'parent' => [],
+      ])->save();
+    }
+  }
+
+  /**
    * Allow node type and taxonomy vocab over JSONAPI.
    */
   public function allowJsonApiResources() {
