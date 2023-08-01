@@ -198,7 +198,7 @@ class TideSearchOperation {
     foreach ($terms as $term) {
       Term::create([
         'name' => $term['name'],
-        'vid' => '',
+        'vid' => 'searchable_fields',
         'field_elasticsearch_field' => $term['field_elasticsearch_field'],
         'field_taxonomy_machine_name' => $term['field_taxonomy_machine_name'],
         'parent' => [],
