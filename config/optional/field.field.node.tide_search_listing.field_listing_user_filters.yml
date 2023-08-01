@@ -4,8 +4,8 @@ dependencies:
   config:
     - field.storage.node.field_listing_user_filters
     - node.type.tide_search_listing
-    - paragraphs.paragraphs_type.listing_select_from_taxonomy
     - paragraphs.paragraphs_type.listing_user_custom_filter
+    - paragraphs.paragraphs_type.searchable_fields
   module:
     - entity_reference_revisions
 id: node.tide_search_listing.field_listing_user_filters
@@ -22,7 +22,7 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      listing_select_from_taxonomy: listing_select_from_taxonomy
+      searchable_fields: searchable_fields
       listing_user_custom_filter: listing_user_custom_filter
     negate: 0
     target_bundles_drag_drop:
@@ -37,9 +37,6 @@ settings:
         enabled: false
       basic_text:
         weight: 87
-        enabled: false
-      business_entity:
-        weight: 88
         enabled: false
       call_to_action:
         weight: 89
@@ -65,9 +62,6 @@ settings:
       card_promotion_auto:
         weight: 96
         enabled: false
-      clients:
-        weight: 97
-        enabled: false
       compact_card:
         weight: 98
         enabled: false
@@ -85,12 +79,6 @@ settings:
         enabled: false
       content_collection_enhanced:
         weight: 103
-        enabled: false
-      daily_update:
-        weight: 104
-        enabled: false
-      daily_update_statistics:
-        weight: 105
         enabled: false
       data_driven_component:
         weight: 106
@@ -110,90 +98,6 @@ settings:
       form_embed_openforms:
         weight: 111
         enabled: false
-      gc_advice:
-        weight: 112
-        enabled: false
-      gc_face_masks:
-        weight: 113
-        enabled: false
-      gc_get_vaccinated:
-        weight: 114
-        enabled: false
-      gc_how_to_stay_safe_and_well:
-        weight: 115
-        enabled: false
-      gc_in_the_vaccine:
-        weight: 116
-        enabled: false
-      gc_kits_for_community:
-        weight: 117
-        enabled: false
-      gc_media:
-        weight: 118
-        enabled: false
-      gc_more_information:
-        weight: 119
-        enabled: false
-      gc_paragraph_100:
-        weight: 120
-        enabled: false
-      gc_paragraph_20:
-        weight: 121
-        enabled: false
-      gc_paragraph_30:
-        weight: 122
-        enabled: false
-      gc_paragraph_40:
-        weight: 123
-        enabled: false
-      gc_paragraph_50:
-        weight: 124
-        enabled: false
-      gc_paragraph_60:
-        weight: 125
-        enabled: false
-      gc_paragraph_70:
-        weight: 126
-        enabled: false
-      gc_paragraph_80:
-        weight: 127
-        enabled: false
-      gc_paragraph_90:
-        weight: 128
-        enabled: false
-      gc_resources:
-        weight: 129
-        enabled: false
-      gc_restrictions_metro:
-        weight: 130
-        enabled: false
-      gc_restrictions_regional_vic:
-        weight: 131
-        enabled: false
-      gc_support:
-        weight: 132
-        enabled: false
-      gc_testing_and_isolation:
-        weight: 133
-        enabled: false
-      gc_text_area_4:
-        weight: 134
-        enabled: false
-      gc_text_area_6:
-        weight: 135
-        enabled: false
-      gc_text_field_video:
-        weight: 136
-        enabled: false
-      gc_vaccinated_first:
-        weight: 137
-        enabled: false
-      gc_vaccine_safety:
-        weight: 138
-        enabled: false
-      gc_victoria_restrictions:
-        weight: 139
-        enabled: false
       hero_banner_with_cta:
         weight: 140
         enabled: false
@@ -205,9 +109,6 @@ settings:
         enabled: false
       keydates:
         weight: 142
-        enabled: false
-      kinder_date_calculator:
-        weight: 144
         enabled: false
       latest_events:
         weight: 145
@@ -221,18 +122,12 @@ settings:
       listing_custom_filter:
         weight: 148
         enabled: false
-      listing_select_from_taxonomy:
-        weight: 150
-        enabled: true
       listing_site:
         weight: 149
         enabled: false
       listing_user_custom_filter:
         weight: 150
         enabled: true
-      lobbyist:
-        weight: 151
-        enabled: false
       media_gallery:
         weight: 152
         enabled: false
@@ -242,14 +137,8 @@ settings:
       news_listing:
         weight: 154
         enabled: false
-      owner:
-        weight: 155
-        enabled: false
       phone:
         weight: 156
-        enabled: false
-      project_information:
-        weight: 157
         enabled: false
       promotion_card:
         weight: 158
@@ -260,14 +149,14 @@ settings:
       search_listing_header_component:
         weight: 160
         enabled: false
+      searchable_fields:
+        weight: 88
+        enabled: true
       social_link:
         weight: 161
         enabled: false
       statistic_block:
         weight: 163
-        enabled: false
-      statistic_link:
-        weight: 164
         enabled: false
       statistics_grid:
         weight: 162

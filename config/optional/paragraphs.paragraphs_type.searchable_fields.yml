@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-id: listing_select_from_taxonomy
-label: 'Select from taxonomy'
+id: searchable_fields
+label: 'Searchable Fields'
 icon_uuid: null
 icon_default: null
 description: ''
