@@ -8,16 +8,16 @@ dependencies:
     - field.field.node.tide_search_listing.field_header_components
     - field.field.node.tide_search_listing.field_landing_page_intro_text
     - field.field.node.tide_search_listing.field_landing_page_summary
+    - field.field.node.tide_search_listing.field_layout_component
     - field.field.node.tide_search_listing.field_listing_global_filters
-    - field.field.node.tide_search_listing.field_listing_layout_component
     - field.field.node.tide_search_listing.field_listing_query_config
-    - field.field.node.tide_search_listing.field_listing_results_component
     - field.field.node.tide_search_listing.field_listing_results_config
     - field.field.node.tide_search_listing.field_listing_results_per_page
     - field.field.node.tide_search_listing.field_listing_user_filters
     - field.field.node.tide_search_listing.field_metatags
     - field.field.node.tide_search_listing.field_node_primary_site
     - field.field.node.tide_search_listing.field_node_site
+    - field.field.node.tide_search_listing.field_results_component
     - field.field.node.tide_search_listing.field_search_configuration
     - field.field.node.tide_search_listing.field_search_input_placeholder
     - field.field.node.tide_search_listing.field_search_submit_label
@@ -26,9 +26,9 @@ dependencies:
     - field.field.node.tide_search_listing.field_topic
     - node.type.tide_search_listing
   module:
-    - dynamic_entity_reference
     - entity_reference_revisions
     - metatag
+    - text
     - tide_content_collection
     - user
 id: node.tide_search_listing.default
@@ -42,11 +42,11 @@ content:
     weight: -20
     region: content
   field_below_results_content:
-    type: basic_string
+    type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 117
+    weight: 120
     region: content
   field_custom_sort_configuration:
     type: content_collection_configuration_raw
@@ -87,21 +87,13 @@ content:
     third_party_settings: {  }
     weight: 106
     region: content
-  field_listing_layout_component:
-    type: dynamic_entity_reference_label
+  field_layout_component:
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    weight: 114
-    region: content
-  field_listing_results_component:
-    type: dynamic_entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 115
+    weight: 118
     region: content
   field_listing_results_config:
     type: content_collection_configuration_raw
@@ -117,6 +109,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 107
+    region: content
+  field_results_component:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 119
     region: content
   field_search_configuration:
     type: content_collection_configuration_raw
