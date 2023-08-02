@@ -133,11 +133,11 @@ function tide_search_update_8004() {
   );
   $tideSearchOperation->addTaxonomyTerms(
     'listing_layout_comp_taxonomy',
-    ['Grid', 'List', 'Table']
+    ['TideSearchResultsGrid', 'TideSearchResultsList', 'TideSearchResultsTable']
   );
   $tideSearchOperation->addTaxonomyTerms(
     'listing_results_comp_taxonomy',
-    ['Card', 'Card (Profile)', 'List item', 'List item (Grants)']
+    ['TideSearchResult', 'TideSearchResultCard', 'TideGrantSearchResult']
   );
   $tideSearchOperation->addSearchableFieldsTerms();
 }
