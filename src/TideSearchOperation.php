@@ -198,6 +198,26 @@ class TideSearchOperation {
         'field_elasticsearch_field' => 'field_audience_name',
         'field_taxonomy_machine_name' => 'audience',
       ],
+      [
+        'name' => 'Profile - Australia Day Ambassadors - Category',
+        'field_elasticsearch_field' => 'field_profile_category_name',
+        'field_taxonomy_machine_name' => 'vada_categories',
+      ],
+      [
+        'name' => 'Profile - Expertise',
+        'field_elasticsearch_field' => 'field_profile_expertise_name',
+        'field_taxonomy_machine_name' => 'expertise',
+      ],
+      [
+        'name' => 'Recommendations - Family Violence - Category',
+        'field_elasticsearch_field' => 'field_fv_recommendation_category_name',
+        'field_taxonomy_machine_name' => 'fv_recommendation_category',
+      ],
+      [
+        'name' => 'Topic',
+        'field_elasticsearch_field' => 'field_topic_name',
+        'field_taxonomy_machine_name' => 'topic',
+      ],
     ];
     foreach ($terms as $term) {
       Term::create([
