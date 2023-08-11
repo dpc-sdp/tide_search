@@ -9,8 +9,6 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-  wysiwyg_template:
-    default_template: ''
 name: 'Search Listing'
 type: tide_search_listing
 description: 'Use <em>Search Listing</em> content type for landing pages that have a search widget to filter results with.'
