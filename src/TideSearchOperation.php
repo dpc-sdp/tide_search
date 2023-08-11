@@ -167,7 +167,7 @@ class TideSearchOperation {
     error_log(" tide_search - adding workflows for search listing");
     $config = \Drupal::configFactory()->getEditable('workflows.workflow.editorial');
     $dependencies = $config->get('dependencies.config');
-    $dependencies[] = 'tide_search_listing';
+    $dependencies[] = 'node.type.tide_search_listing';
     $config->set('dependencies.config', $dependencies);
     $type_settings = $config->get('type_settings.entity_types.node');
     $type_settings[] = 'tide_search_listing';
