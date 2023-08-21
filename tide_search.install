@@ -114,3 +114,30 @@ function tide_search_update_8003() {
   $tideSearchOperation = new TideSearchOperation();
   $tideSearchOperation->removeTideAlertFromDatasource();
 }
+
+/**
+ * Add new content type for Search Listing.
+ */
+function tide_search_update_8004() {
+  \Drupal::service('module_installer')->install(['tide_content_collection'], TRUE);
+  $config_location = [\Drupal::service('extension.list.module')->getPath('tide_search') . '/config/optional'];
+  $tideSearchOperation = new TideSearchOperation();
+  $tideSearchOperation->createSearchListingContentType($config_location);
+  $tideSearchOperation->updateSearchListingFormDisplay($config_location);
+  $tideSearchOperation->addSearchListingPermissions();
+  $tideSearchOperation->addSearchListingWorkflows();
+  $tideSearchOperation->allowJsonApiResources();
+  $tideSearchOperation->addTaxonomyTerms(
+    'search_listing_custom_header_com',
+    ['Progress Bar']
+  );
+  $tideSearchOperation->addTaxonomyTerms(
+    'listing_layout_comp_taxonomy',
+    ['TideSearchResultsGrid', 'TideSearchResultsList', 'TideSearchResultsTable']
+  );
+  $tideSearchOperation->addTaxonomyTerms(
+    'listing_results_comp_taxonomy',
+    ['TideSearchResult', 'TideSearchResultCard', 'TideGrantSearchResult']
+  );
+  $tideSearchOperation->addSearchableFieldsTerms();
+}
