@@ -312,7 +312,7 @@ class TideSearchOperation {
         ],
       ],
     ];
-    $config->set('dependencies.field_settings', $fields);
+    $config->set('field_settings', $fields);
 
     $filters = $config->get('processor_settings.html_filter.fields');
     $new_filters = [
