@@ -244,4 +244,90 @@ class TideSearchOperation {
     $config->save();
   }
 
+  /**
+   * Ensure that the required field config for search for Ripple 2.0 is present.
+   */
+  public function setCoreSearchApiFields() {
+    error_log(" tide_search - setting core search api fields for ripple 2.0");
+    $config = \Drupal::configFactory()->getEditable('search_api.index.node');
+
+    $dependencies = $config->get('dependencies.config');
+    $new_dependencies = [
+      'field.storage.node.field_landing_page_component',
+      'field.storage.paragraph.field_paragraph_body',
+      'field.storage.paragraph.field_paragraph_summary',
+      'field.storage.node.field_event_details',
+      'field.storage.paragraph.field_paragraph_location',
+    ];
+    foreach ($new_dependencies as $new_dependency) {
+      if (!in_array($new_dependency, $dependencies)) {
+        $dependencies[] = $new_dependency;
+      }
+    }
+    $config->set('dependencies.config', $dependencies);
+
+    $fields = $config->get('field_settings');
+    $fields['field_event_details_event_locality'] = [
+      'label' => 'Event Details » Location » The locality',
+      'datasource_id' => 'entity:node',
+      'property_path' => 'field_event_details:entity:field_paragraph_location:locality',
+      'type' => 'text',
+      'dependencies' => [
+        'config' => [
+          'field.storage.node.field_event_details',
+          'field.storage.paragraph.field_paragraph_location',
+        ],
+        'module' => [
+          'paragraphs',
+        ],
+      ],
+    ];
+    $fields['field_paragraph_body'] = [
+      'label' => 'Content components » Paragraph » Body',
+      'datasource_id' => 'entity:node',
+      'property_path' => 'field_landing_page_component:entity:field_paragraph_body',
+      'type' => 'text',
+      'dependencies' => [
+        'config' => [
+          'field.storage.node.field_landing_page_component',
+          'field.storage.paragraph.field_paragraph_body',
+        ],
+        'module' => [
+          'paragraphs',
+        ],
+      ],
+    ];
+    $fields['field_paragraph_summary'] = [
+      'label' => 'Content components » Paragraph » Summary',
+      'datasource_id' => 'entity:node',
+      'property_path' => 'field_landing_page_component:entity:field_paragraph_summary',
+      'type' => 'text',
+      'dependencies' => [
+        'config' => [
+          'field.storage.node.field_landing_page_component',
+          'field.storage.paragraph.field_paragraph_summary',
+        ],
+        'module' => [
+          'paragraphs',
+        ],
+      ],
+    ];
+    $config->set('field_settings', $fields);
+
+    $filters = $config->get('processor_settings.html_filter.fields');
+    $new_filters = [
+      'field_paragraph_body',
+      'field_paragraph_summary',
+      'field_event_details_event_locality',
+    ];
+    foreach ($new_filters as $new_filter) {
+      if (!in_array($new_filter, $filters)) {
+        $filters[] = $new_filter;
+      }
+    }
+    $config->set('processor_settings.html_filter.fields', $filters);
+
+    $config->save();
+  }
+
 }

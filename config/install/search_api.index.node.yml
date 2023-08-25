@@ -5,6 +5,11 @@ dependencies:
     - field.storage.node.body
     - field.storage.node.field_topic
     - field.storage.node.field_tags
+    - field.storage.node.field_landing_page_component
+    - field.storage.paragraph.field_paragraph_body
+    - field.storage.paragraph.field_paragraph_summary
+    - field.storage.node.field_event_details
+    - field.storage.paragraph.field_paragraph_location
     - search_api.server.elasticsearch_bay
   module:
     - taxonomy
@@ -91,6 +96,39 @@ field_settings:
       module:
         - taxonomy
         - path
+  field_event_details_event_locality:
+    label: 'Event Details » Location » The locality'
+    datasource_id: 'entity:node'
+    property_path: 'field_event_details:entity:field_paragraph_location:locality'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_event_details
+        - field.storage.paragraph.field_paragraph_location
+      module:
+        - paragraphs
+    field_paragraph_body:
+      label: 'Content components » Paragraph » Body'
+      datasource_id: 'entity:node'
+      property_path: 'field_landing_page_component:entity:field_paragraph_body'
+      type: text
+      dependencies:
+        config:
+          - field.storage.node.field_landing_page_component
+          - field.storage.paragraph.field_paragraph_body
+        module:
+          - paragraphs
+    field_paragraph_summary:
+      label: 'Content components » Paragraph » Summary'
+      datasource_id: 'entity:node'
+      property_path: 'field_landing_page_component:entity:field_paragraph_summary'
+      type: text
+      dependencies:
+        config:
+          - field.storage.node.field_landing_page_component
+          - field.storage.paragraph.field_paragraph_summary
+        module:
+          - paragraphs
   status:
     label: Published
     datasource_id: 'entity:node'
@@ -191,6 +229,9 @@ processor_settings:
       - field_topic_path
       - field_tags_name
       - field_tags_path
+      - field_paragraph_body
+      - field_paragraph_summary
+      - field_event_details_event_locality
       - uuid
       - field_tags_uuid
       - field_topic_uuid
