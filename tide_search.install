@@ -22,7 +22,7 @@ function tide_search_install() {
 function tide_search_update_dependencies() {
   $dependencies = [];
   $dependencies['tide_search'][8001] = ['tide_core' => 8009];
-
+  $dependencies['tide_search'][8005] = ['tide_landing_page' => 8050];
   return $dependencies;
 }
 
