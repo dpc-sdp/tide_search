@@ -143,7 +143,7 @@ function tide_search_update_8004() {
 }
 
 /**
- * Update search api fields for Ripple 2.0 search
+ * Update search api fields for Ripple 2.0 search.
  */
 function tide_search_update_8005() {
   $moduleHandler = \Drupal::service('module_handler');
