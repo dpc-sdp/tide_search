@@ -22,7 +22,7 @@ function tide_search_install() {
 function tide_search_update_dependencies() {
   $dependencies = [];
   $dependencies['tide_search'][8001] = ['tide_core' => 8009];
-
+  $dependencies['tide_search'][8005] = ['tide_landing_page' => 8050];
   return $dependencies;
 }
 
@@ -140,4 +140,15 @@ function tide_search_update_8004() {
     ['TideSearchResult', 'TideSearchResultCard', 'TideGrantSearchResult']
   );
   $tideSearchOperation->addSearchableFieldsTerms();
+}
+
+/**
+ * Update search api fields for Ripple 2.0 search.
+ */
+function tide_search_update_8005() {
+  $moduleHandler = \Drupal::service('module_handler');
+  if ($moduleHandler->moduleExists('paragraphs') && $moduleHandler->moduleExists('tide_landing_page')) {
+    $tideSearchOperation = new TideSearchOperation();
+    $tideSearchOperation->setCoreSearchApiFields();
+  }
 }
