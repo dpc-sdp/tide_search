@@ -24,7 +24,10 @@
     "dpc-sdp/tide_core": "^3.0.0",
     "dpc-sdp/tide_landing_page": "^3.0.0",
     "drupal/elasticsearch_connector": "^7.0",
-    "drupal/search_api": "^1.11"
+    "drupal/search_api": "^1.11",
+    "drupal/data_pipelines": "^1.0@alpha",
+    "drupal/data_pipelines_elasticsearch": "^1.0@alpha",
+    "drupal/key": "^1.17"
   },
   "type": "drupal-module"
 }

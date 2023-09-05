@@ -9,3 +9,4 @@ dependencies:
   - dpc-sdp:tide_core
   - dpc-sdp:tide_landing_page
   - paragraphs
+  - tide_search:tide_data_pipeline

@@ -1,0 +1,42 @@
+sdp_number_pipeline:
+  label: 'SDP number pipeline'
+  class: '\Drupal\data_pipelines_elasticsearch\ElasticSearchDatasetPipeline'
+
+sdp_text_pipeline:
+  label: 'SDP text pipeline'
+  class: '\Drupal\data_pipelines_elasticsearch\ElasticSearchDatasetPipeline'
+
+sdp_keyword_pipeline:
+  label: 'SDP keyword pipeline'
+  class: '\Drupal\data_pipelines_elasticsearch\ElasticSearchDatasetPipeline'
+
+sdp_data_pipeline:
+  label: 'Cameras Save Lives Data Pipeline'
+  class: '\Drupal\data_pipelines_elasticsearch\ElasticSearchDatasetPipeline'
+  mappings:
+    properties:
+      id:
+        type: text
+        index: false
+      string_1:
+        type: text
+      number_1:
+        type: numeric
+      latitude:
+        type: text
+        index: false
+      longitude:
+        type: text
+        index: false
+      location:
+        type: geo_point
+      google_maps_link:
+        type: text
+  transforms:
+    record:
+      - plugin: concat
+        fields:
+          - latitude
+          - longitude
+        as: location
+        separator: ','
