@@ -1,5 +1,5 @@
 sdp_data_pipeline:
-  label: 'Cameras Save Lives Data Pipeline'
+  label: 'SDP Data Pipeline'
   class: '\Drupal\data_pipelines_elasticsearch\ElasticSearchDatasetPipeline'
   mappings:
     properties:
