@@ -115,7 +115,7 @@ class TideSearchOperation {
       'core.entity_view_display.taxonomy_term.searchable_fields.default' => 'entity_view_display',
     ];
 
-    module_load_include('inc', 'tide_core', 'includes/helpers');
+    \Drupal::moduleHandler()->loadInclude('tide_core', 'inc', 'includes/helpers');
     foreach ($configs as $config => $type) {
       $config_read = _tide_read_config($config, $config_location, TRUE);
       $storage = \Drupal::entityTypeManager()->getStorage($type);
