@@ -152,3 +152,13 @@ function tide_search_update_8005() {
     $tideSearchOperation->setCoreSearchApiFields();
   }
 }
+
+/**
+ * Install module tide_data_pipeline.
+ */
+function tide_search_update_8006() {
+  if (!\Drupal::moduleHandler()->moduleExists('tide_data_pipeline')) {
+    $module_installer = \Drupal::service('module_installer');
+    $module_installer->install(['tide_data_pipeline']);
+  }
+}
