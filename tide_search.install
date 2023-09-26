@@ -169,9 +169,9 @@ function tide_search_update_8006() {
 function tide_search_update_8007() {
   $configs = [
     'field.field.node.tide_search_listing.field_landing_page_c_secondary' => 'field_config',
-    'core.entity_view_display.node.tide_search_listing.teaser' => 'entity_view_display',
     'core.entity_view_display.node.tide_search_listing.default' => 'entity_view_display',
     'core.entity_form_display.node.tide_search_listing.default' => 'entity_form_display',
+    'core.entity_view_display.node.tide_search_listing.teaser' => 'entity_view_display',
   ];
 
   \Drupal::moduleHandler()->loadInclude('tide_core', 'inc', 'includes/helpers');
