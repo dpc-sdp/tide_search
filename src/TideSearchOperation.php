@@ -117,11 +117,12 @@ class TideSearchOperation {
 
     \Drupal::moduleHandler()->loadInclude('tide_core', 'inc', 'includes/helpers');
     foreach ($configs as $config => $type) {
-      $config_read = _tide_read_config($config, $config_location, TRUE);
       $storage = \Drupal::entityTypeManager()->getStorage($type);
       $id = substr($config, strrpos($config, '.') + 1);
-      if ($storage->load($id) == NULL) {
+      $config_entity = $storage->load($id);
+      if ($config_entity === NULL) {
         error_log(" tide_search - importing config: " . $id);
+        $config_read = _tide_read_config($config, $config_location, TRUE);
         $config_entity = $storage->createFromStorageRecord($config_read);
         $config_entity->save();
       }
