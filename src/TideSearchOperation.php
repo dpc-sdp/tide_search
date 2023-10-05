@@ -379,12 +379,13 @@ class TideSearchOperation {
       $insert = TRUE;
       foreach ($existing_terms as $existing_term) {
         if ($existing_term->name == $term['name']) {
+          \Drupal::logger('tide_search')->notice("Cannot insert term ".$term['name']." as it's already present against searchable_fields vocab.");
           error_log("Cannot insert term ".$term['name']." as it's already present against searchable_fields vocab.");
           $insert = FALSE;
         }
       }
       if ($insert) {
-        error_log("Inserting ".$term['name']." against searchable_fields vocab.");
+        \Drupal::logger('tide_search')->notice("Inserting ".$term['name']." against searchable_fields vocab.");
         Term::create([
           'name' => $term['name'],
           'vid' => $vid,
