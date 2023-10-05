@@ -14,6 +14,7 @@ use Drupal\tide_search\TideSearchOperation;
 function tide_search_install() {
   $tideSearchOperation = new TideSearchOperation();
   $tideSearchOperation->removeTideAlertFromDatasource();
+  $tideSearchOperation->addBaseTermsForSearchableFields();
 }
 
 /**
@@ -199,67 +200,6 @@ function tide_search_update_8007() {
  * Add default set of terms to searchable fields vocab.
  */
 function tide_search_update_8008() {
-  $vid = 'searchable_fields';
-  $terms = [
-    [
-      'name' => 'Audience (Grants)',
-      'field_elasticsearch_field' => 'field_audience_name',
-      'field_taxonomy_machine_name' => 'audience',
-    ],
-    [
-      'name' => 'Content cateory',
-      'field_elasticsearch_field' => 'field_content_category',
-      'field_taxonomy_machine_name' => 'content_category',
-    ],
-    [
-      'name' => 'Department',
-      'field_elasticsearch_field' => 'field_department_agency',
-      'field_taxonomy_machine_name' => 'department',
-    ],
-    [
-      'name' => 'Event category',
-      'field_elasticsearch_field' => 'field_event_category',
-      'field_taxonomy_machine_name' => 'event',
-    ],
-    [
-      'name' => 'Event requirements',
-      'field_elasticsearch_field' => 'field_event_details_event_requirements_name',
-      'field_taxonomy_machine_name' => 'event_requirements',
-    ],
-    [
-      'name' => 'Sites and site sections',
-      'field_elasticsearch_field' => 'field_node_site',
-      'field_taxonomy_machine_name' => 'sites',
-    ],
-    [
-      'name' => 'Tags',
-      'field_elasticsearch_field' => 'field_tags',
-      'field_taxonomy_machine_name' => 'tags',
-    ],
-    [
-      'name' => 'Topic',
-      'field_elasticsearch_field' => 'field_topic_name',
-      'field_taxonomy_machine_name' => 'topic',
-    ],
-  ];
-  $existing_terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid);
-  foreach ($terms as $term) {
-    $insert = TRUE;
-    foreach ($existing_terms as $existing_term) {
-      if ($existing_term->name == $term['name']) {
-        error_log("Cannot insert term ".$term['name']." as it's already present against searchable_fields vocab.");
-        $insert = FALSE;
-      }
-    }
-    if ($insert) {
-      error_log("Inserting ".$term['name']." against searchable_fields vocab.");
-      Term::create([
-        'name' => $term['name'],
-        'vid' => $vid,
-        'field_elasticsearch_field' => $term['field_elasticsearch_field'],
-        'field_taxonomy_machine_name' => $term['field_taxonomy_machine_name'],
-        'parent' => [],
-      ])->save();
-    }
-  }
+  $tideSearchOperation = new TideSearchOperation();
+  $tideSearchOperation->addBaseTermsForSearchableFields();
 }
