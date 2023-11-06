@@ -30,7 +30,7 @@
   },
   "require": {
     "dpc-sdp/tide_api": "^4.0.0",
-    "dpc-sdp/tide_core": "^4.0.0",
+    "dpc-sdp/tide_core": "dev-feature/SDPAP-8421-adds-Content-Category-to-tide_core as 4.0.1",
     "dpc-sdp/tide_landing_page": "^4.0.0",
     "drupal/elasticsearch_connector": "^7.0",
     "drupal/search_api": "^1.11",
