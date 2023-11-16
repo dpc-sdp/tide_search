@@ -29,8 +29,8 @@
     }
   },
   "require": {
-    "dpc-sdp/tide_core": "dev-feature/SRM-870-d10-update",
-    "dpc-sdp/tide_landing_page": "dev-feature/SRM-942-drupal-10",
+    "dpc-sdp/tide_core": "^4.0.0",
+    "dpc-sdp/tide_landing_page": "^4.0.0",
     "drupal/elasticsearch_connector": "^7.0",
     "drupal/search_api": "^1.11",
     "drupal/data_pipelines": "^1.0@alpha",
