@@ -2,10 +2,11 @@ name: Tide Search
 description: 'Provides Search and related configuration.'
 type: module
 package: Tide
-core_version_requirement: ^8.9 || ^9
+core_version_requirement: ^9 || ^10
 dependencies:
   - search_api:search_api
   - elasticsearch_connector:elasticsearch_connector
   - dpc-sdp:tide_core
   - dpc-sdp:tide_landing_page
   - paragraphs
+  - tide_search:tide_data_pipeline

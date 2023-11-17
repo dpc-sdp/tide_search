@@ -14,15 +14,16 @@ class TideSearchOperation {
    * Remove tide_alert content type from data source if module exists.
    */
   public function removeTideAlertFromDatasource() {
-    if (\Drupal::moduleHandler()->moduleExists('tide_alert')) {
-      $config_factory = \Drupal::configFactory();
-      $config = $config_factory->getEditable('search_api.index.node');
-      $node_datasource_settings = $config->get('datasource_settings.entity:node.bundles.selected');
-      if (!in_array('alert', $node_datasource_settings)) {
-        $node_datasource_settings[] = 'alert';
-        $config->set('datasource_settings.entity:node.bundles.selected', $node_datasource_settings);
-        $config->save();
-      }
+    if (!(\Drupal::moduleHandler()->moduleExists('tide_alert'))) {
+      return;
+    }
+    $config_factory = \Drupal::configFactory();
+    $config = $config_factory->getEditable('search_api.index.node');
+    $node_datasource_settings = $config->get('datasource_settings.entity:node.bundles.selected');
+    if (!in_array('alert', $node_datasource_settings)) {
+      $node_datasource_settings[] = 'alert';
+      $config->set('datasource_settings.entity:node.bundles.selected', $node_datasource_settings);
+      $config->save();
     }
   }
 
@@ -115,7 +116,7 @@ class TideSearchOperation {
       'core.entity_view_display.taxonomy_term.searchable_fields.default' => 'entity_view_display',
     ];
 
-    module_load_include('inc', 'tide_core', 'includes/helpers');
+    \Drupal::moduleHandler()->loadInclude('tide_core', 'inc', 'includes/helpers');
     foreach ($configs as $config => $type) {
       $config_read = _tide_read_config($config, $config_location, TRUE);
       $storage = \Drupal::entityTypeManager()->getStorage($type);
