@@ -1,5 +1,5 @@
 {
-  "description": "Search configuration for Tide Drupal 8 distribution",
+  "description": "Search configuration for Tide Drupal 10 distribution",
   "extra": {
     "patches": {
       "drupal/search_api": {
@@ -9,6 +9,9 @@
         "KeyProviderInterface::getKeyValue() doesn't always return a string - https://www.drupal.org/project/key/issues/3356052#comment-15030602": "https://git.drupalcode.org/project/key/-/merge_requests/11/diffs.patch",
         "Deprecated Function: strlen(): Passing null to parameter #1 ($string) - https://www.drupal.org/project/key/issues/3323238": "https://www.drupal.org/files/issues/2023-02-01/3323238-6.patch",
         "Error: Call to a member function getKeyValue on null - https://www.drupal.org/project/key/issues/3385523": "https://www.drupal.org/files/issues/2023-09-06/3385523-4.patch"
+      },
+      "drupal/data_pipelines": {
+        "CSV data header row whitespace needs to be cleaned up - https://drupal.org/project/data_pipelines/issues/3391214": "https://www.drupal.org/files/issues/2023-10-03/trim-whitespace-from-csv-header-names-3391214-2.patch"
       }
     },
     "drush": {
@@ -26,8 +29,8 @@
     }
   },
   "require": {
-    "dpc-sdp/tide_core": "^3.0.0",
-    "dpc-sdp/tide_landing_page": "^3.0.0",
+    "dpc-sdp/tide_core": "^4.0.0",
+    "dpc-sdp/tide_landing_page": "^4.0.0",
     "drupal/elasticsearch_connector": "^7.0",
     "drupal/search_api": "^1.11",
     "drupal/data_pipelines": "^1.0@alpha",
