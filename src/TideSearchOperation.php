@@ -123,7 +123,7 @@ class TideSearchOperation {
       $id = substr($config, strrpos($config, '.') + 1);
       if ($storage->load($id) == NULL) {
         // Try using an extended id as well, e.g.
-        // field.storage.paragraph.field_header_configuration will try paragraph.field_header_configuration
+        // field.storage.paragraph.field_header_configuration will try paragraph.field_header_configuration.
         $id = substr($config, strrpos($config, '.', strrpos($config, '.') - strlen($config) - 1) + 1);
         if ($storage->load($id) == NULL) {
           error_log(" tide_search - importing config: " . $id);
@@ -149,7 +149,7 @@ class TideSearchOperation {
   }
 
   /**
-   * Add permissions for the search listing content type.
+   * Add permissions for the search listing content type.`
    */
   public function addSearchListingPermissions() {
     $role = Role::load('site_admin');
