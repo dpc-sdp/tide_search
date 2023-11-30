@@ -122,9 +122,14 @@ class TideSearchOperation {
       $storage = \Drupal::entityTypeManager()->getStorage($type);
       $id = substr($config, strrpos($config, '.') + 1);
       if ($storage->load($id) == NULL) {
-        error_log(" tide_search - importing config: " . $id);
-        $config_entity = $storage->createFromStorageRecord($config_read);
-        $config_entity->save();
+        // Try using an extended id as well, e.g.
+        // field.storage.paragraph.field_header_configuration will try paragraph.field_header_configuration
+        $id = substr($config, strrpos($config, '.', strrpos($config, '.') - strlen($config) - 1) + 1);
+        if ($storage->load($id) == NULL) {
+          error_log(" tide_search - importing config: " . $id);
+          $config_entity = $storage->createFromStorageRecord($config_read);
+          $config_entity->save();
+        }
       }
     }
   }
