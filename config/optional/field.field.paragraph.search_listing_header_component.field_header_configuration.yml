@@ -4,8 +4,6 @@ dependencies:
   config:
     - field.storage.paragraph.field_header_configuration
     - paragraphs.paragraphs_type.search_listing_header_component
-  module:
-    - tide_content_collection
 id: paragraph.search_listing_header_component.field_header_configuration
 field_name: field_header_configuration
 entity_type: paragraph

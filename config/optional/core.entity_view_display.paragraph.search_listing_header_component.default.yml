@@ -5,8 +5,6 @@ dependencies:
     - field.field.paragraph.search_listing_header_component.field_component
     - field.field.paragraph.search_listing_header_component.field_header_configuration
     - paragraphs.paragraphs_type.search_listing_header_component
-  module:
-    - tide_content_collection
 id: paragraph.search_listing_header_component.default
 targetEntityType: paragraph
 bundle: search_listing_header_component
