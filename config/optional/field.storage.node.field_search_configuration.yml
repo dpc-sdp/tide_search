@@ -3,7 +3,6 @@ status: true
 dependencies:
   module:
     - node
-    - tide_content_collection
 id: node.field_search_configuration
 field_name: field_search_configuration
 entity_type: node
