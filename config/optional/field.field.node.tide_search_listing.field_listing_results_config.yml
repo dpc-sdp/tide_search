@@ -4,8 +4,6 @@ dependencies:
   config:
     - field.storage.node.field_listing_results_config
     - node.type.tide_search_listing
-  module:
-    - tide_content_collection
 id: node.tide_search_listing.field_listing_results_config
 field_name: field_listing_results_config
 entity_type: node

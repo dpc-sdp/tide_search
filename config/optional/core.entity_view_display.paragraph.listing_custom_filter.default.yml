@@ -4,8 +4,6 @@ dependencies:
   config:
     - field.field.paragraph.listing_custom_filter.field_listing_custom_filter_conf
     - paragraphs.paragraphs_type.listing_custom_filter
-  module:
-    - tide_content_collection
 id: paragraph.listing_custom_filter.default
 targetEntityType: paragraph
 bundle: listing_custom_filter
