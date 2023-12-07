@@ -14,3 +14,13 @@ function tide_search_install() {
   $tideSearchOperation = new TideSearchOperation();
   $tideSearchOperation->removeTideAlertFromDatasource();
 }
+
+/**
+ * Install module tide_data_pipeline.
+ */
+function tide_search_update_10001() {
+  if (!\Drupal::moduleHandler()->moduleExists('tide_data_pipeline')) {
+    $module_installer = \Drupal::service('module_installer');
+    $module_installer->install(['tide_data_pipeline']);
+  }
+}
