@@ -26,6 +26,11 @@
     "drupal": {
       "type": "composer",
       "url": "https://packages.drupal.org/8"
+    },
+    "respect/validation": {
+      "type": "vcs",
+      "no-api": true,
+      "url": "https://github.com/dpc-sdp/Validation.git"
     }
   },
   "require": {
@@ -35,7 +40,8 @@
     "drupal/search_api": "^1.11",
     "drupal/data_pipelines": "1.0.0-alpha22",
     "drupal/data_pipelines_elasticsearch": "^1.0@alpha",
-    "drupal/key": "^1.17"
+    "drupal/key": "^1.17",
+    "respect/validation": "dev-lock-symfony-polyfill-1.27.0 as dev-master"
   },
   "type": "drupal-module"
 }
