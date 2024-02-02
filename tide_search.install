@@ -39,7 +39,7 @@ function tide_search_update_10002() {
   $field_settings = $config->get('field_settings');
   if (!isset($field_settings['field_above_results_content'])) {
     $field_settings['field_above_results_content'] = [
-      'label' => 'Below results content',
+      'label' => 'Above results content',
       'datasource_id' => 'entity:node',
       'property_path' => 'field_above_results_content',
       'type' => 'text',
