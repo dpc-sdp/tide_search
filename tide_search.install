@@ -24,3 +24,38 @@ function tide_search_update_10001() {
     $module_installer->install(['tide_data_pipeline']);
   }
 }
+
+
+/**
+ * Adds field_above_results_content field to search api, and updates settings.
+ */
+function tide_search_update_10002() {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('search_api.index.node');
+  $dependencies = $config->get('dependencies.config');
+  if (!in_array('field.storage.node.field_above_results_content', $dependencies)) {
+    $dependencies[] = 'field.storage.node.field_above_results_content';
+    $config->set('dependencies.config', $dependencies);
+  }
+  $field_settings = $config->get('field_settings');
+  if (!isset($field_settings['field_above_results_content'])) {
+    $field_settings['field_above_results_content'] = [
+      'label' => 'Below results content',
+      'datasource_id' => 'entity:node',
+      'property_path' => 'field_above_results_content',
+      'type' => 'text',
+      'dependencies' => [
+        'config' => [
+          'field.storage.node.field_above_results_content',
+        ],
+      ],
+    ];
+    $config->set('field_settings', $field_settings);
+  }
+  $processor_settings = $config->get('processor_settings.html_filter.fields');
+  if (!in_array('field_above_results_content', $processor_settings)) {
+    $processor_settings[] = 'field_above_results_content';
+    $config->set('processor_settings.html_filter.fields', $processor_settings);
+  }
+  $config->save();
+}
