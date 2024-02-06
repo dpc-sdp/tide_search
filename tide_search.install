@@ -26,7 +26,7 @@ function tide_search_update_10001() {
 }
 
 /**
- * Adds field_above_results_content field to search api, and updates settings.
+ * Adds field_above_results_content field to search listing.
  */
 function tide_search_update_10002() {
   \Drupal::moduleHandler()->loadInclude('tide_core', 'inc', 'includes/helpers');
