@@ -36,7 +36,7 @@ function tide_search_update_10002() {
     'field.storage.node.field_above_results_content' => 'field_storage_config',
     'field.field.node.tide_search_listing.field_above_results_content' => 'field_config',
   ];
-    // Check if field already exported to config/sync.
+  // Check if field already exported to config/sync.
   foreach ($configs as $config => $type) {
     $config_read = _tide_read_config($config, $config_location, TRUE);
     $storage = \Drupal::entityTypeManager()->getStorage($type);
