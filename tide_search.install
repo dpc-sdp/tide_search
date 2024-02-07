@@ -32,12 +32,12 @@ function tide_search_update_10002() {
   module_load_include('inc', 'tide_core', 'includes/helpers');
   $config_location = [\Drupal::service('extension.list.module')->getPath('tide_search') . '/config/optional'];
 
-  $field_configs = [
-    'field.field.node.tide_search_listing.field_above_results_content' => 'field_config',
+  $configs = [
     'field.storage.node.field_above_results_content' => 'field_storage_config',
+    'field.field.node.tide_search_listing.field_above_results_content' => 'field_config',
   ];
     // Check if field already exported to config/sync.
-  foreach ($field_configs as $config => $type) {
+  foreach ($configs as $config => $type) {
     $config_read = _tide_read_config($config, $config_location, TRUE);
     $storage = \Drupal::entityTypeManager()->getStorage($type);
     $config_entity = $storage->createFromStorageRecord($config_read);
