@@ -29,22 +29,21 @@ function tide_search_update_10001() {
  * Adds field_above_results_content field to search listing.
  */
 function tide_search_update_10002() {
-  \Drupal::moduleHandler()->loadInclude('tide_core', 'inc', 'includes/helpers');
+  module_load_include('inc', 'tide_core', 'includes/helpers');
+
+//  \Drupal::moduleHandler()->loadInclude('tide_core', 'inc', 'includes/helpers');
   $config_location = [\Drupal::service('extension.list.module')->getPath('tide_search') . '/config/optional'];
 
   $field_configs = [
-    'field.field.node.tide_search_listing.field_above_results_content',
-    'field.storage.node.field_above_results_content',
+    'field.field.node.tide_search_listing.field_above_results_content' => 'field_config',
+    'field.storage.node.field_above_results_content' => 'field_storage_config',
   ];
-  foreach ($field_configs as $config) {
-    $type = 'field_config';
-    $config_read = _tide_read_config($config, $config_location);
+    // Check if field already exported to config/sync.
+  foreach ($configs as $config => $type) {
+    $config_read = _tide_read_config($config, $config_location, TRUE);
     $storage = \Drupal::entityTypeManager()->getStorage($type);
-    $id = substr($config, strrpos($config, '.') + 1);
-    if ($storage->load($id) == NULL) {
-      $config_entity = $storage->createFromStorageRecord($config_read);
-      $config_entity->save();
-    }
+    $config_entity = $storage->createFromStorageRecord($config_read);
+    $config_entity->save();
   }
 
   $form_configs = [
