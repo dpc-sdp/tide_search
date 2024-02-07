@@ -26,35 +26,35 @@ function tide_search_update_10001() {
 }
 
 /**
- * Adds field_above_results_content field to search api, and updates settings.
+ * Adds field_above_results_content field to search listing.
  */
 function tide_search_update_10002() {
-  $config_factory = \Drupal::configFactory();
-  $config = $config_factory->getEditable('search_api.index.node');
-  $dependencies = $config->get('dependencies.config');
-  if (!in_array('field.storage.node.field_above_results_content', $dependencies)) {
-    $dependencies[] = 'field.storage.node.field_above_results_content';
-    $config->set('dependencies.config', $dependencies);
+  module_load_include('inc', 'tide_core', 'includes/helpers');
+  $config_location = [\Drupal::service('extension.list.module')->getPath('tide_search') . '/config/optional'];
+
+  $configs = [
+    'field.storage.node.field_above_results_content' => 'field_storage_config',
+    'field.field.node.tide_search_listing.field_above_results_content' => 'field_config',
+  ];
+    // Check if field already exported to config/sync.
+  foreach ($configs as $config => $type) {
+    $config_read = _tide_read_config($config, $config_location, TRUE);
+    $storage = \Drupal::entityTypeManager()->getStorage($type);
+    $config_entity = $storage->createFromStorageRecord($config_read);
+    $config_entity->save();
   }
-  $field_settings = $config->get('field_settings');
-  if (!isset($field_settings['field_above_results_content'])) {
-    $field_settings['field_above_results_content'] = [
-      'label' => 'Below results content',
-      'datasource_id' => 'entity:node',
-      'property_path' => 'field_above_results_content',
-      'type' => 'text',
-      'dependencies' => [
-        'config' => [
-          'field.storage.node.field_above_results_content',
-        ],
-      ],
-    ];
-    $config->set('field_settings', $field_settings);
+
+  $form_configs = [
+    'core.entity_form_display.node.tide_search_listing.default',
+    'core.entity_view_display.node.tide_search_listing.default',
+    'core.entity_view_display.node.tide_search_listing.teaser',
+  ];
+  foreach ($form_configs as $form_config) {
+    $config = \Drupal::configFactory()->getEditable($form_config);
+    $config_read = _tide_read_config($form_config, $config_location, FALSE);
+    $config->set('dependencies', $config_read['dependencies']);
+    $config->set('content', $config_read['content']);
+    $config->set('hidden', $config_read['hidden']);
+    $config->save();
   }
-  $processor_settings = $config->get('processor_settings.html_filter.fields');
-  if (!in_array('field_above_results_content', $processor_settings)) {
-    $processor_settings[] = 'field_above_results_content';
-    $config->set('processor_settings.html_filter.fields', $processor_settings);
-  }
-  $config->save();
 }

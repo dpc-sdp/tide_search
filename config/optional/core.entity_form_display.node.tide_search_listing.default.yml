@@ -149,7 +149,7 @@ content:
     third_party_settings: {  }
   field_above_results_content:
     type: text_textarea
-    weight: 6
+    weight: 7
     region: content
     settings:
       rows: 5
