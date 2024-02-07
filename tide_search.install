@@ -30,8 +30,6 @@ function tide_search_update_10001() {
  */
 function tide_search_update_10002() {
   module_load_include('inc', 'tide_core', 'includes/helpers');
-
-//  \Drupal::moduleHandler()->loadInclude('tide_core', 'inc', 'includes/helpers');
   $config_location = [\Drupal::service('extension.list.module')->getPath('tide_search') . '/config/optional'];
 
   $field_configs = [
