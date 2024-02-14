@@ -15,7 +15,6 @@ settings:
   index: node
   schema: ''
   case_sensitive: false
-module: tide_content_collection
 locked: false
 cardinality: 1
 translatable: true
