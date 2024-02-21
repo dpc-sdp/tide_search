@@ -32,7 +32,7 @@ function tide_search_update_10002() {
   \Drupal::moduleHandler()->loadInclude('tide_core', 'inc', 'includes/helpers');
   $config_location = [\Drupal::service('extension.list.module')->getPath('tide_search') . '/config/optional'];
 
-  $config = 'field.field.node.tide_search_listing.field_node_department.yml';
+  $config = 'field.field.node.tide_search_listing.field_node_department';
   $type = 'field_config';
   $config_read = _tide_read_config($config, $config_location);
   $storage = \Drupal::entityTypeManager()->getStorage($type);
