@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.tide_search_listing.field_listing_results_per_page
     - field.field.node.tide_search_listing.field_listing_user_filters
     - field.field.node.tide_search_listing.field_metatags
+    - field.field.node.tide_search_listing.field_node_department
     - field.field.node.tide_search_listing.field_node_primary_site
     - field.field.node.tide_search_listing.field_node_site
     - field.field.node.tide_search_listing.field_results_component
@@ -59,6 +60,7 @@ hidden:
   field_listing_results_per_page: true
   field_listing_user_filters: true
   field_metatags: true
+  field_node_department: true
   field_node_primary_site: true
   field_node_site: true
   field_results_component: true
