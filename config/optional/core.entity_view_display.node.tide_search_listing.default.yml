@@ -30,6 +30,7 @@ dependencies:
     - entity_reference_revisions
     - metatag
     - text
+    - tide_content_collection
     - user
 id: node.tide_search_listing.default
 targetEntityType: node

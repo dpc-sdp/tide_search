@@ -35,6 +35,7 @@ dependencies:
     - path
     - select2
     - text
+    - tide_content_collection
 third_party_settings:
   field_group:
     group_search_listing_header:
