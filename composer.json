@@ -12,6 +12,9 @@
       },
       "drupal/data_pipelines": {
         "CSV data header row whitespace needs to be cleaned up - https://drupal.org/project/data_pipelines/issues/3391214": "https://www.drupal.org/files/issues/2023-10-03/trim-whitespace-from-csv-header-names-3391214-2.patch"
+      },
+      "drupal/elasticsearch_connector": {
+        "Add support for bearer token authentication with username and password - https://www.drupal.org/project/elasticsearch_connector/issues/3371380": "https://git.drupalcode.org/project/elasticsearch_connector/-/merge_requests/33/diffs.patch"
       }
     },
     "drush": {
