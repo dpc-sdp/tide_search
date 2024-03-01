@@ -4,6 +4,8 @@ dependencies:
   config:
     - field.storage.node.field_custom_sort_configuration
     - node.type.tide_search_listing
+  module:
+    - tide_content_collection
 id: node.tide_search_listing.field_custom_sort_configuration
 field_name: field_custom_sort_configuration
 entity_type: node
