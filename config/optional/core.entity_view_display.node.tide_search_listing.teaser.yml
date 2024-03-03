@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.tide_search_listing.field_above_results_content
     - field.field.node.tide_search_listing.field_below_results_content
     - field.field.node.tide_search_listing.field_custom_sort_configuration
     - field.field.node.tide_search_listing.field_featured_image
@@ -46,6 +47,7 @@ content:
     weight: 100
     region: content
 hidden:
+  field_above_results_content: true
   field_below_results_content: true
   field_custom_sort_configuration: true
   field_featured_image: true
