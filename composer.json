@@ -30,8 +30,8 @@
   },
   "require": {
     "dpc-sdp/tide_api": "dev-reference",
-    "dpc-sdp/tide_core": "dev-reference",
-    "dpc-sdp/tide_landing_page": "dev-reference",
+    "dpc-sdp/tide_core": "dev-reference-SDPAP-8421 as dev-reference",
+    "dpc-sdp/tide_landing_page": "dev-reference-SDPAP-8421 as dev-reference",
     "drupal/data_pipelines": "1.0.0-alpha22",
     "drupal/data_pipelines_elasticsearch": "^1.0@alpha",
     "drupal/elasticsearch_connector": "^7.0",
