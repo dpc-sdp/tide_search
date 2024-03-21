@@ -11,7 +11,8 @@
         "Error: Call to a member function getKeyValue on null - https://www.drupal.org/project/key/issues/3385523": "https://www.drupal.org/files/issues/2023-09-06/3385523-4.patch"
       },
       "drupal/data_pipelines": {
-        "CSV data header row whitespace needs to be cleaned up - https://drupal.org/project/data_pipelines/issues/3391214": "https://www.drupal.org/files/issues/2023-10-03/trim-whitespace-from-csv-header-names-3391214-2.patch"
+        "CSV data header row whitespace needs to be cleaned up - https://drupal.org/project/data_pipelines/issues/3391214": "https://www.drupal.org/files/issues/2023-10-03/trim-whitespace-from-csv-header-names-3391214-2.patch",
+        "set a default value based on certain criteria - https://www.drupal.org/project/data_pipelines/issues/3426248#comment-15478507": "https://www.drupal.org/files/issues/2024-03-07/data_pipelines-3426248-1.patch"
       }
     },
     "drush": {
