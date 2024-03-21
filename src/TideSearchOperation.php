@@ -20,7 +20,7 @@ class TideSearchOperation {
     $config_factory = \Drupal::configFactory();
     $config = $config_factory->getEditable('search_api.index.node');
     $node_datasource_settings = $config->get('datasource_settings.entity:node.bundles.selected');
-    if (!in_array('alert', $node_datasource_settings)) {
+    if (is_array($node_datasource_settings) && !in_array('alert', $node_datasource_settings)) {
       $node_datasource_settings[] = 'alert';
       $config->set('datasource_settings.entity:node.bundles.selected', $node_datasource_settings);
       $config->save();
