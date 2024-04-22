@@ -28,6 +28,7 @@ dependencies:
     - field.field.node.tide_search_listing.field_topic
     - node.type.tide_search_listing
     - workflows.workflow.editorial
+    - field.field.node.tide_search_listing.field_content_category
   module:
     - content_moderation
     - field_group
@@ -37,6 +38,7 @@ dependencies:
     - select2
     - text
     - tide_content_collection
+    - term_reference_tree
 third_party_settings:
   field_group:
     group_search_listing_header:
@@ -388,6 +390,17 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_content_category:
+    type: term_reference_tree
+    weight: 11
+    region: content
+    settings:
+      start_minimized: true
+      leaves_only: true
+      select_parents: false
+      cascading_selection: 0
+      max_depth: 0
+    third_party_settings: { }
   moderation_state:
     type: moderation_state_default
     weight: 20
