@@ -15,7 +15,7 @@
         "set a default value based on certain criteria - https://www.drupal.org/project/data_pipelines/issues/3426248#comment-15507258": "https://www.drupal.org/files/issues/2024-03-21/data_pipelines-3426248-6.patch.patch"
       },
       "drupal/elasticsearch_connector": {
-        "Incompatible with recent search_api 8.x-1.35 release - https://www.drupal.org/project/elasticsearch_connector/issues/3455006#comment-15644881": "https://www.drupal.org/files/issues/2024-06-18/elasticsearch_connector-fix_sleep_method_compatibility-3455006-7.patch"
+        "Add a return type hint to SearchApiElasticsearchBackend::__sleep() - https://www.drupal.org/project/elasticsearch_connector/issues/3442514": "https://www.drupal.org/files/issues/2024-04-22/3442514-2--sleep_return_type_hint.patch"
       }
     },
     "drush": {
