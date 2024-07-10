@@ -21,6 +21,9 @@
       },
       "drupal/search_api": {
         "Provide drush support to index a specific entity - https://www.drupal.org/project/search_api/issues/3016809": "https://www.drupal.org/files/issues/2020-02-08/search_api-index-specific-items-3016809-09.patch"
+      },
+      "drupal/elasticsearch_connector": {
+        "https://www.drupal.org/project/elasticsearch_connector/issues/3455006#comment-15644881": "https://www.drupal.org/files/issues/2024-06-18/elasticsearch_connector-fix_sleep_method_compatibility-3455006-7.patch"
       }
     }
   },
