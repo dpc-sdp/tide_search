@@ -1,0 +1,44 @@
+pipeline_with_mutiple_value_processor_transform:
+  label: 'Mutiple Value Processor transform'
+  transforms:
+    field:
+      Suburbs:
+        - plugin: mutiple_value_processor
+          separator: ';'
+          callback: str_pad
+          parameters:
+            - 10
+            - '0'
+            - STR_PAD_LEFT
+
+pipeline_with_strtoupper:
+  label: 'Mutiple Value Processor with strtoupper'
+  transforms:
+    field:
+      Suburbs:
+        - plugin: mutiple_value_processor
+          separator: ';'
+          callback: strtoupper
+
+pipeline_with_mb_convert_case:
+  label: 'Mutiple Value Processor with mb_convert_case'
+  transforms:
+    field:
+      Suburbs:
+        - plugin: mutiple_value_processor
+          separator: ';'
+          callback: mb_convert_case
+          parameters:
+            - 'MB_CASE_UPPER'
+
+pipeline_with_substr:
+  label: 'Mutiple Value Processor with substr'
+  transforms:
+    field:
+      Suburbs:
+        - plugin: mutiple_value_processor
+          separator: ';'
+          callback: substr
+          parameters:
+            - '0'
+            - 'true'
