@@ -11,12 +11,12 @@ use Drupal\data_pipelines\Transform\TransformPluginBase;
  * Splits a string into multiple values and optionally processes them.
  *
  * @DatasetTransform(
- *   id="mutiple_value_processor",
+ *   id="multi_value_processor",
  *   fields=TRUE,
  *   records=FALSE
  * )
  */
-class MutipleValueProcessor extends TransformPluginBase {
+class MultiValueProcessor extends TransformPluginBase {
 
   /**
    * {@inheritdoc}
@@ -26,6 +26,8 @@ class MutipleValueProcessor extends TransformPluginBase {
       'separator' => '',
       'callback' => NULL,
       'parameters' => [],
+    // Default to first argument.
+      'value_position' => 0,
     ];
   }
 
@@ -38,6 +40,7 @@ class MutipleValueProcessor extends TransformPluginBase {
       $separator = $this->configuration['separator'];
       $callback = $this->configuration['callback'];
       $parameters = $this->configuration['parameters'];
+      $value_position = $this->configuration['value_position'];
       $parts = explode($separator, $record[$field_name]);
       $cleaned_parts = array_values(array_filter(array_map('trim', $parts), function ($part) {
         return $part !== '';
@@ -45,9 +48,11 @@ class MutipleValueProcessor extends TransformPluginBase {
 
       // Process the parts if a callback is provided.
       if (is_callable($callback)) {
-        $cleaned_parts = array_map(function ($value) use ($callback, $parameters) {
+        $cleaned_parts = array_map(function ($value) use ($callback, $parameters, $value_position) {
           $typed_parameters = array_map([$this, 'convertParameter'], $parameters);
-          return call_user_func_array($callback, array_merge([$value], $typed_parameters));
+          $args = $typed_parameters;
+          array_splice($args, $value_position, 0, [$value]);
+          return call_user_func_array($callback, $args);
         }, $cleaned_parts);
       }
       $record[$field_name] = $cleaned_parts;
