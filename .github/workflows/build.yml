@@ -1,7 +1,7 @@
 name: build
 
 on: push
-        
+
 jobs:
   set_status_in_progress:
     name: set_status_in_progress
