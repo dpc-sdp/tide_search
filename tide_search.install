@@ -117,3 +117,11 @@ function tide_search_update_10004() {
   _tide_core_field_content_category_default_value('tide_search_listing', 'Search listing');
   _tide_core_content_category_form_display('tide_search_listing');
 }
+
+/**
+ * Restricts field_search_configuration to administrators.
+ */
+function tide_search_update_10005() {
+  $tideSearchOperation = new TideSearchOperation();
+  $tideSearchOperation->restrictFieldSearchConfiguration();
+}

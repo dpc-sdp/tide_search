@@ -334,5 +334,27 @@ class TideSearchOperation {
 
     $config->save();
   }
-
+  
+  /**
+   * Defines the name of the field that contains elasticsearch query config.
+   */
+  const SEARCH_CONFIG_FIELD = "field_search_configuration";
+  
+  /**
+   * Restricts field_search_configuration to administrators.
+   */
+  public function restrictFieldSearchConfiguration() {
+    $config_factory = \Drupal::configFactory();
+    $config = $config_factory->getEditable('field.storage.node.field_search_configuration');
+    $config->set('third_party_settings', ['field_permissions' => ['permission_type' => 'custom']]);
+    $config->save();
+    
+    foreach (["anonymous", "authenticated"] as $role_id) {
+      $role = \Drupal::entityTypeManager()->getStorage('user_role')->load($role_id);
+      $role->grantPermission(sprintf("view %s", self::SEARCH_CONFIG_FIELD));
+      $role->grantPermission(sprintf("view own %s", self::SEARCH_CONFIG_FIELD));
+      $role->save();
+    }
+  }
+  
 }
